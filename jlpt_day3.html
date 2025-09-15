@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 - Ngày 3: Học Hiragana なにぬねの</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .lesson-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF6B6B;
+        }
+        .hiragana-card {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hiragana-card:hover {
+            transform: scale(1.1);
+        }
+        .hiragana-large {
+            font-size: 3em;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        .vocabulary-item {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2196F3;
+        }
+        .game-section {
+            background: #fff3e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF9800;
+        }
+        .story-section {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #9C27B0;
+        }
+        .song-section {
+            background: #e8f5e8;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .time-slot {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .matching-card {
+            display: inline-block;
+            width: 120px;
+            height: 80px;
+            background: #ffeb3b;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 80px;
+            font-size: 1.5em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        .matching-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .matching-card.selected {
+            border-color: #4caf50;
+            background: #c8e6c9;
+        }
+        .matching-card.matched {
+            background: #4caf50;
+            color: white;
+            transform: scale(0.95);
+        }
+        .examples {
+            background: #f0f4c3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .example-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+        .story-character {
+            display: inline-block;
+            background: #e1f5fe;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+            border: 2px solid #2196F3;
+        }
+        .character-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1976D2;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌸 JLPT N5 - Ngày 3 🌸</h1>
+            <h2>Thứ ba, 16/9/2025</h2>
+            <p>Học Hiragana hàng な: なにぬねの</p>
+        </div>
+
+        <!-- 20:00-20:15: Warm-up -->
+        <div class="lesson-section">
+            <div class="time-slot">20:00-20:15: Warm-up: Hát tất cả chữ đã học</div>
+            <h3>🎤 Ôn tập tất cả Hiragana đã học</h3>
+            <div class="song-section">
+                <h4>🎼 Bài hát "あ か さ た の うた" (Bài hát A-Ka-Sa-Ta)</h4>
+                <div class="audio-player">
+                    <p><strong>Lời bài hát tổng hợp:</strong></p>
+                    <p style="font-size: 1.1em; line-height: 1.6;">
+                        あ あ あ - あひる あかい (A a a - Vịt con đỏ đỏ)<br>
+                        か か か - からす くろい (Ka ka ka - Quạ đen đen)<br>
+                        さ さ さ - さかな およぐ (Sa sa sa - Cá bơi lội)<br>
+                        た た た - たまご まるい (Ta ta ta - Trứng tròn tròn)<br>
+                        あ か さ た で - あかるい (A Ka Sa Ta - Sáng sủa)<br>
+                        いっしょに うたおう！(Cùng hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('akasata-song')">🎵 Phát nhạc</button>
+                </div>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">あ</div>
+                        <p>A</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">か</div>
+                        <p>Ka</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">さ</div>
+                        <p>Sa</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">た</div>
+                        <p>Ta</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">ち</div>
+                        <p>Chi</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">つ</div>
+                        <p>Tsu</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">て</div>
+                        <p>Te</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">と</div>
+                        <p>To</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:15-20:30: Học hàng な -->
+        <div class="lesson-section">
+            <div class="time-slot">20:15-20:30: Học hàng な: なにぬねの</div>
+            <h3>✨ Học chữ mới: なにぬねの</h3>
+            
+            <div class="vocabulary-item">
+                <h4>📚 Từ vựng chính:</h4>
+                <div class="examples">
+                    <div class="example-item">
+                        <strong>📝 なまえ (namae) - Tên</strong><br>
+                        <em>Câu thần chú: "Tên em là gì? なまえは？"</em><br>
+                        Ví dụ 1: わたしの なまえは... (Tên tôi là...)<br>
+                        Ví dụ 2: なまえを かく (viết tên)<br>
+                        Ví dụ 3: なまえが きれい (tên đẹp)
+                    </div>
+                    <div class="example-item">
+                        <strong>🐱 ねこ (neko) - Mèo</strong><br>
+                        <em>Câu thần chú: "Mèo ねこ kêu meow meow"</em><br>
+                        Ví dụ 1: ねこが すき (thích mèo)<br>
+                        Ví dụ 2: ちいさい ねこ (mèo nhỏ)<br>
+                        Ví dụ 3: ねこが ねている (mèo đang ngủ)
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                <div class="hiragana-card" onclick="playHiragana('na')">
+                    <div class="hiragana-large">な</div>
+                    <p>NA</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('ni')">
+                    <div class="hiragana-large">に</div>
+                    <p>NI</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('nu')">
+                    <div class="hiragana-large">ぬ</div>
+                    <p>NU</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('ne')">
+                    <div class="hiragana-large">ね</div>
+                    <p>NE</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('no')">
+                    <div class="hiragana-large">の</div>
+                    <p>NO</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:30-20:45: Game ghép đôi -->
+        <div class="game-section">
+            <div class="time-slot">20:30-20:45: Trò chơi ghép đôi: Chữ + Hình ảnh</div>
+            <h3>🎮 Trò chơi: Ghép chữ với hình ảnh</h3>
+            
+            <p><strong>Cách chơi:</strong> Em hãy ghép chữ Hiragana với hình ảnh tương ứng!</p>
+            <div id="matchingGame" style="text-align: center;">
+                <h4>Chữ Hiragana:</h4>
+                <div class="matching-card" data-type="hiragana" data-value="あ" onclick="selectCard(this)">あ</div>
+                <div class="matching-card" data-type="hiragana" data-value="か" onclick="selectCard(this)">か</div>
+                <div class="matching-card" data-type="hiragana" data-value="さ" onclick="selectCard(this)">さ</div>
+                <div class="matching-card" data-type="hiragana" data-value="た" onclick="selectCard(this)">た</div>
+                <div class="matching-card" data-type="hiragana" data-value="な" onclick="selectCard(this)">な</div>
+                <div class="matching-card" data-type="hiragana" data-value="ね" onclick="selectCard(this)">ね</div>
+                
+                <h4 style="margin-top: 30px;">Hình ảnh:</h4>
+                <div class="matching-card" data-type="image" data-value="あ" onclick="selectCard(this)">🦆</div>
+                <div class="matching-card" data-type="image" data-value="か" onclick="selectCard(this)">🐦</div>
+                <div class="matching-card" data-type="image" data-value="さ" onclick="selectCard(this)">🐟</div>
+                <div class="matching-card" data-type="image" data-value="た" onclick="selectCard(this)">🥚</div>
+                <div class="matching-card" data-type="image" data-value="な" onclick="selectCard(this)">📝</div>
+                <div class="matching-card" data-type="image" data-value="ね" onclick="selectCard(this)">🐱</div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <p id="matchingResult" style="font-size: 1.2em; font-weight: bold; color: #FF6B6B;"></p>
+                <button class="btn" onclick="resetMatchingGame()">🔄 Chơi lại</button>
+            </div>
+        </div>
+
+        <!-- 20:45-21:00: Kể chuyện -->
+        <div class="story-section">
+            <div class="time-slot">20:45-21:00: Kể chuyện ngắn với chữ đã học</div>
+            <h3>📖 Câu chuyện: Cuộc phiêu lưu của ねこ (Mèo)</h3>
+            
+            <div class="story-character">
+                <div class="character-name">🐱 ねこ (Neko)</div>
+                <p>Mèo con dễ thương</p>
+            </div>
+            
+            <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    <strong>[Suy luận] - Câu chuyện được thiết kế để em nhớ chữ な và ね:</strong><br><br>
+                    Ngày xửa ngày xưa, có một chú mèo con tên <strong>ねこ</strong> (Neko). 
+                    Mèo ねこ rất tò mò và muốn biết <strong>なまえ</strong> (tên) của tất cả 
+                    các bạn trong rừng.
+                    <br><br>
+                    Một hôm, mèo ねこ gặp một con <strong>あひる</strong> (vịt) và hỏi: 
+                    "あなたの なまえは なんですか？" (Tên bạn là gì?). Con vịt trả lời: 
+                    "わたしの なまえは あひる です" (Tên tôi là vịt).
+                    <br><br>
+                    Mèo ねこ tiếp tục gặp <strong>からす</strong> (quạ), <strong>さかな</strong> (cá), 
+                    và <strong>たまご</strong> (trứng). Tất cả đều có <strong>なまえ</strong> riêng!
+                    <br><br>
+                    Cuối cùng, mèo ねこ hiểu rằng mỗi người đều có <strong>なまえ</strong> đặc biệt, 
+                    và tên của mèo ねこ cũng rất đẹp!
+                </p>
+            </div>
+
+            <div class="song-section">
+                <h4>🎵 Bài hát "なにぬねの":</h4>
+                <div class="audio-player">
+                    <p style="font-size: 1.2em;">
+                        <strong>"なにぬねの の うた" (Bài hát Na-Ni-Nu-Ne-No)</strong><br><br>
+                        なまえ なまえ なまえ (Tên tên tên)<br>
+                        にほんご にほんご にほんご (Tiếng Nhật tiếng Nhật tiếng Nhật)<br>
+                        ぬいぐるみ ぬいぐるみ ぬいぐるみ (Gấu bông gấu bông gấu bông)<br>
+                        ねこ ねこ ねこ (Mèo mèo mèo)<br>
+                        のりもの のりもの のりもの (Phương tiện phương tiện phương tiện)<br>
+                        なにぬねの うたおう！(Na-Ni-Nu-Ne-No hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('naninuneno-song')">🎵 Hát cùng</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <h4>🎭 Hoạt động: Đóng vai nhân vật</h4>
+                <p>Em hãy đóng vai mèo ねこ và hỏi tên các bạn trong gia đình!</p>
+                <button class="btn" onclick="startRolePlay()">🎭 Bắt đầu đóng vai</button>
+            </div>
+        </div>
+
+        <!-- Bài tập về nhà -->
+        <div class="lesson-section">
+            <h3>📚 Bài tập về nhà</h3>
+            <p><strong>[Suy luận] - Bài tập được thiết kế để củng cố kiến thức:</strong></p>
+            <ul>
+                <li>Viết chữ なにぬねの 3 lần mỗi chữ</li>
+                <li>Hát bài "なにぬねの" với bố mẹ</li>
+                <li>Hỏi tên của 3 người trong gia đình bằng tiếng Nhật</li>
+                <li>Kể lại câu chuyện mèo ねこ cho bố mẹ nghe</li>
+            </ul>
+        </div>
+
+        <!-- Progress tracking -->
+        <div class="lesson-section">
+            <h3>📊 Tiến độ học tập</h3>
+            <p>✅ Đã học: あ か さ た なにぬねの</p>
+            <p>🎯 Mục tiêu ngày mai: Học はひふへほ</p>
+            <p>🏆 Điểm số hôm nay: <span id="todayScore">0</span>/100</p>
+            <button class="btn" onclick="calculateScore()">📈 Tính điểm</button>
+        </div>
+    </div>
+
+    <script>
+        // Matching Game Logic
+        let selectedCards = [];
+        let matchedPairs = 0;
+        let gameScore = 0;
+
+        function selectCard(card) {
+            if (card.classList.contains('matched') || selectedCards.length >= 2) return;
+            
+            card.classList.add('selected');
+            selectedCards.push(card);
+            
+            if (selectedCards.length === 2) {
+                setTimeout(checkMatch, 1000);
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = selectedCards;
+            
+            if (card1.getAttribute('data-value') === card2.getAttribute('data-value')) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                gameScore += 20;
+                document.getElementById('matchingResult').textContent = `Tuyệt vời! Ghép đúng! (+20 điểm)`;
+                
+                if (matchedPairs === 6) {
+                    document.getElementById('matchingResult').textContent = '🎉 Hoàn thành! Em giỏi quá!';
+                    playSound('victory');
+                }
+            } else {
+                card1.classList.remove('selected');
+                card2.classList.remove('selected');
+                document.getElementById('matchingResult').textContent = 'Thử lại nhé!';
+            }
+            
+            selectedCards = [];
+        }
+
+        function resetMatchingGame() {
+            const cards = document.querySelectorAll('.matching-card');
+            cards.forEach(card => {
+                card.classList.remove('selected', 'matched');
+            });
+            selectedCards = [];
+            matchedPairs = 0;
+            gameScore = 0;
+            document.getElementById('matchingResult').textContent = '';
+        }
+
+        // Role Play Function
+        function startRolePlay() {
+            const familyMembers = ['おとうさん (bố)', 'おかあさん (mẹ)', 'おにいさん (anh trai)', 'おねえさん (chị gái)'];
+            let currentMember = 0;
+            
+            function askNextMember() {
+                if (currentMember < familyMembers.length) {
+                    const member = familyMembers[currentMember];
+                    const response = prompt(`Mèo ねこ hỏi: "あなたの なまえは なんですか？" (Tên bạn là gì?)\n\nGia đình trả lời: "わたしの なまえは ${member} です" (Tên tôi là ${member})\n\nEm hãy nhập "OK" để tiếp tục:`);
+                    
+                    if (response && response.toLowerCase() === 'ok') {
+                        currentMember++;
+                        setTimeout(askNextMember, 500);
+                    } else {
+                        alert('Em hãy nhập "OK" để tiếp tục nhé!');
+                        askNextMember();
+                    }
+                } else {
+                    alert('🎉 Tuyệt vời! Em đã hỏi tên tất cả mọi người! Mèo ねこ rất vui!');
+                }
+            }
+            
+            alert('🎭 Bắt đầu đóng vai mèo ねこ!\n\nEm sẽ hỏi tên các thành viên trong gia đình bằng tiếng Nhật!');
+            askNextMember();
+        }
+
+        // Sound functions
+        function playSound(soundType) {
+            console.log(`Playing sound: ${soundType}`);
+            alert(`🔊 Đang phát âm thanh: ${soundType}\n[Chưa xác minh] - Cần file âm thanh thực tế`);
+        }
+
+        function playHiragana(hiragana) {
+            console.log(`Playing hiragana: ${hiragana}`);
+            alert(`🔊 Phát âm: ${hiragana}`);
+        }
+
+        // Score calculation
+        function calculateScore() {
+            let totalScore = 0;
+            
+            // Check matching game
+            if (gameScore > 0) totalScore += Math.min(gameScore, 60);
+            
+            // Check hiragana card interactions
+            totalScore += 20; // Base score for learning
+            
+            // Check role play participation
+            totalScore += 20; // Base score for participation
+            
+            document.getElementById('todayScore').textContent = totalScore;
+            
+            if (totalScore >= 80) {
+                alert('🌟 Xuất sắc! Em học rất tốt hôm nay!');
+            } else if (totalScore >= 60) {
+                alert('👍 Tốt lắm! Em đã cố gắng nhiều!');
+            } else {
+                alert('💪 Em hãy thử chơi game ghép đôi để tăng điểm nhé!');
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            resetMatchingGame();
+        };
+    </script>
+</body>
+</html>

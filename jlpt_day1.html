@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 - Ngày 1: Học Hiragana さしすせそ</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .lesson-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF6B6B;
+        }
+        .hiragana-card {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hiragana-card:hover {
+            transform: scale(1.1);
+        }
+        .hiragana-large {
+            font-size: 3em;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        .vocabulary-item {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2196F3;
+        }
+        .game-section {
+            background: #fff3e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF9800;
+        }
+        .story-section {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #9C27B0;
+        }
+        .song-section {
+            background: #e8f5e8;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .drawing-section {
+            background: #fce4ec;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #E91E63;
+        }
+        .time-slot {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .memory-card {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: #ffeb3b;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 100px;
+            font-size: 2em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .memory-card.flipped {
+            background: #4caf50;
+            transform: rotateY(180deg);
+        }
+        .canvas-container {
+            border: 3px dashed #FF6B6B;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            background: white;
+        }
+        #drawingCanvas {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: crosshair;
+        }
+        .audio-player {
+            background: #e1f5fe;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .examples {
+            background: #f0f4c3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .example-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌸 JLPT N5 - Ngày 1 🌸</h1>
+            <h2>Chủ nhật, 14/9/2025</h2>
+            <p>Học Hiragana hàng さ: さしすせそ</p>
+        </div>
+
+        <!-- 20:00-20:15: Ôn lại あ か -->
+        <div class="lesson-section">
+            <div class="time-slot">20:00-20:15: Ôn lại あ か bằng cách hát</div>
+            <h3>🎵 Bài hát Hiragana あ か</h3>
+            <div class="song-section">
+                <h4>🎼 Bài hát "あ か の うた" (Bài hát A-Ka)</h4>
+                <div class="audio-player">
+                    <p><strong>Lời bài hát:</strong></p>
+                    <p style="font-size: 1.2em; line-height: 1.6;">
+                        あ あ あ - あひる あかい (A a a - Vịt con đỏ đỏ)<br>
+                        か か か - からす くろい (Ka ka ka - Quạ đen đen)<br>
+                        あ と か で - あかるい (A và Ka - Sáng sủa)<br>
+                        いっしょに うたおう！(Cùng hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('ak-song')">🎵 Phát nhạc</button>
+                    <p><em>[Chưa xác minh] - File âm thanh cần được tạo riêng</em></p>
+                </div>
+                
+                <div class="hiragana-card">
+                    <div class="hiragana-large">あ</div>
+                    <p>A - あひる (vịt)</p>
+                </div>
+                <div class="hiragana-card">
+                    <div class="hiragana-large">か</div>
+                    <p>Ka - からす (quạ)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:15-20:30: Học hàng さ -->
+        <div class="lesson-section">
+            <div class="time-slot">20:15-20:30: Học hàng さ: さしすせそ</div>
+            <h3>✨ Học chữ mới: さしすせそ</h3>
+            
+            <div class="vocabulary-item">
+                <h4>📚 Từ vựng chính:</h4>
+                <div class="examples">
+                    <div class="example-item">
+                        <strong>🐟 さかな (sakana) - Cá</strong><br>
+                        <em>Câu thần chú: "Cá さかな bơi sa sa"</em><br>
+                        Ví dụ 1: おおきい さかな (cá to)<br>
+                        Ví dụ 2: ちいさい さかな (cá nhỏ)<br>
+                        Ví dụ 3: あかい さかな (cá đỏ)
+                    </div>
+                    <div class="example-item">
+                        <strong>🍣 すし (sushi) - Sushi</strong><br>
+                        <em>Câu thần chú: "Ăn sushi, yum yum!"</em><br>
+                        Ví dụ 1: すしを たべます (ăn sushi)<br>
+                        Ví dụ 2: おいしい すし (sushi ngon)<br>
+                        Ví dụ 3: すしが すきです (thích sushi)
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                <div class="hiragana-card" onclick="playHiragana('sa')">
+                    <div class="hiragana-large">さ</div>
+                    <p>SA</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('shi')">
+                    <div class="hiragana-large">し</div>
+                    <p>SHI</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('su')">
+                    <div class="hiragana-large">す</div>
+                    <p>SU</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('se')">
+                    <div class="hiragana-large">せ</div>
+                    <p>SE</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('so')">
+                    <div class="hiragana-large">そ</div>
+                    <p>SO</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:30-20:45: Game tìm thẻ -->
+        <div class="game-section">
+            <div class="time-slot">20:30-20:45: Game tìm thẻ Hiragana</div>
+            <h3>🎮 Trò chơi: Tìm thẻ Hiragana giống nhau</h3>
+            
+            <p><strong>Cách chơi:</strong> Click vào các thẻ để lật và tìm cặp giống nhau!</p>
+            <div id="memoryGame" style="text-align: center;">
+                <div class="memory-card" data-card="あ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="か" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="さ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="あ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="し" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="か" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="さ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="し" onclick="flipCard(this)">?</div>
+            </div>
+            <p id="gameResult" style="font-size: 1.2em; font-weight: bold; margin-top: 20px;"></p>
+            <button class="btn" onclick="resetGame()">🔄 Chơi lại</button>
+        </div>
+
+        <!-- 20:45-21:00: Vẽ tranh -->
+        <div class="drawing-section">
+            <div class="time-slot">20:45-21:00: Vẽ và hát</div>
+            <h3>🎨 Vẽ tranh: Con cá bên chữ さかな</h3>
+            
+            <div class="story-section">
+                <h4>📖 Câu chuyện: Cá さかな và chuyến phiêu lưu</h4>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    <strong>[Suy luận] - Câu chuyện được thiết kế để em dễ nhớ chữ さかな:</strong><br><br>
+                    Ngày xửa ngày xưa, có một con cá nhỏ tên <strong>さかな</strong> (Sakana). 
+                    Cá さかな rất thích bơi trong hồ nước trong xanh. Mỗi ngày, cá さかな 
+                    đều hát bài hát: "Sa sa sa, tôi là さかな! Bơi lội sa sa trong nước xanh!"
+                    <br><br>
+                    Một hôm, cá さかな gặp một con cá khác và nói: "すし になりたくない！" 
+                    (Tôi không muốn thành sushi!). Từ đó, cá さかな quyết định học chữ 
+                    để viết tên mình: <strong>さかな</strong>!
+                    <br><br>
+                    Em hãy vẽ con cá さかな và viết tên của nó bên cạnh nhé!
+                </p>
+            </div>
+
+            <div class="canvas-container">
+                <h4>🖌️ Vẽ con cá さかな của em:</h4>
+                <canvas id="drawingCanvas" width="500" height="300"></canvas><br>
+                <button class="btn" onclick="clearCanvas()">🗑️ Xóa</button>
+                <button class="btn" onclick="changeColor('blue')">🔵 Xanh</button>
+                <button class="btn" onclick="changeColor('red')">🔴 Đỏ</button>
+                <button class="btn" onclick="changeColor('green')">🟢 Xanh lá</button>
+                <button class="btn" onclick="changeColor('orange')">🟠 Cam</button>
+                
+                <div style="margin-top: 20px;">
+                    <h4>🎯 Hướng dẫn vẽ:</h4>
+                    <p>1. Vẽ hình oval làm thân cá</p>
+                    <p>2. Thêm đuôi cá hình tam giác</p>
+                    <p>3. Vẽ mắt và miệng</p>
+                    <p>4. Viết chữ <strong>さかな</strong> bên cạnh</p>
+                    <p>5. Tô màu thật đẹp!</p>
+                </div>
+            </div>
+
+            <div class="song-section">
+                <h4>🎵 Bài hát của con cá:</h4>
+                <div class="audio-player">
+                    <p style="font-size: 1.2em;">
+                        <strong>"さかな の うた" (Bài hát con cá)</strong><br><br>
+                        さかな さかな みずの なか (Cá cá trong nước)<br>
+                        およいで およいで たのしいな (Bơi lội bơi lội vui quá)<br>
+                        さ！さ！さ！ (Sa! Sa! Sa!)<br>
+                        すいすい およぐよ (Bơi suỵt sủa)<br>
+                        さかな だいすき！(Yêu cá lắm!)
+                    </p>
+                    <button class="btn" onclick="playSound('fish-song')">🎵 Hát cùng cá</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài tập về nhà -->
+        <div class="lesson-section">
+            <h3>📚 Bài tập về nhà</h3>
+            <p><strong>[Suy luận] - Bài tập được thiết kế để củng cố kiến thức:</strong></p>
+            <ul>
+                <li>Viết chữ さしすせそ 3 lần mỗi chữ</li>
+                <li>Hát bài "Cá さかな" với bố mẹ</li>
+                <li>Tìm 2 đồ vật có tên bắt đầu bằng chữ さ trong nhà</li>
+                <li>Vẽ thêm một bức tranh có chữ さ</li>
+            </ul>
+        </div>
+
+        <!-- Progress tracking -->
+        <div class="lesson-section">
+            <h3>📊 Tiến độ học tập</h3>
+            <p>✅ Đã học: あ か さしすせそ</p>
+            <p>🎯 Mục tiêu ngày mai: Học たちつてと</p>
+            <p>🏆 Điểm số hôm nay: <span id="todayScore">0</span>/100</p>
+            <button class="btn" onclick="calculateScore()">📈 Tính điểm</button>
+        </div>
+    </div>
+
+    <script>
+        // Memory Game Logic
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let currentColor = 'black';
+
+        function flipCard(card) {
+            if (card.classList.contains('flipped') || flippedCards.length >= 2) return;
+            
+            card.classList.add('flipped');
+            card.textContent = card.getAttribute('data-card');
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 1000);
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.getAttribute('data-card') === card2.getAttribute('data-card')) {
+                matchedPairs++;
+                document.getElementById('gameResult').textContent = `Tuyệt vời! Tìm được ${matchedPairs} cặp!`;
+                
+                if (matchedPairs === 4) {
+                    document.getElementById('gameResult').textContent = '🎉 Hoàn thành! Em giỏi quá!';
+                    playSound('victory');
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                card1.textContent = '?';
+                card2.textContent = '?';
+            }
+            
+            flippedCards = [];
+        }
+
+        function resetGame() {
+            const cards = document.querySelectorAll('.memory-card');
+            cards.forEach(card => {
+                card.classList.remove('flipped');
+                card.textContent = '?';
+            });
+            flippedCards = [];
+            matchedPairs = 0;
+            document.getElementById('gameResult').textContent = '';
+            
+            // Shuffle cards
+            const gameContainer = document.getElementById('memoryGame');
+            const cardArray = Array.from(cards);
+            cardArray.sort(() => Math.random() - 0.5);
+            cardArray.forEach(card => gameContainer.appendChild(card));
+        }
+
+        // Drawing Canvas
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('touchstart', handleTouch);
+        canvas.addEventListener('touchmove', handleTouch);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        function startDrawing(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        function stopDrawing() {
+            if (!isDrawing) return;
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function changeColor(color) {
+            currentColor = color;
+        }
+
+        // Sound functions
+        function playSound(soundType) {
+            // [Chưa xác minh] - Cần tạo file âm thanh thực tế
+            console.log(`Playing sound: ${soundType}`);
+            alert(`🔊 Đang phát âm thanh: ${soundType}\n[Chưa xác minh] - Cần file âm thanh thực tế`);
+        }
+
+        function playHiragana(hiragana) {
+            console.log(`Playing hiragana: ${hiragana}`);
+            alert(`🔊 Phát âm: ${hiragana}`);
+        }
+
+        // Score calculation
+        function calculateScore() {
+            let score = 0;
+            
+            // Check if games were played
+            if (matchedPairs > 0) score += 30;
+            
+            // Check interaction with hiragana cards
+            score += 40; // Base score for participation
+            
+            // Check drawing activity
+            if (ctx.getImageData(0, 0, canvas.width, canvas.height).data.some(channel => channel !== 0)) {
+                score += 30;
+            }
+            
+            document.getElementById('todayScore').textContent = score;
+            
+            if (score >= 80) {
+                alert('🌟 Xuất sắc! Em học rất tốt hôm nay!');
+            } else if (score >= 60) {
+                alert('👍 Tốt lắm! Em đã cố gắng nhiều!');
+            } else {
+                alert('💪 Em hãy thử chơi game và vẽ tranh để tăng điểm nhé!');
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            resetGame();
+            // Draw sample fish outline
+            drawSampleFish();
+        };
+
+        function drawSampleFish() {
+            ctx.strokeStyle = '#ccc';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            
+            // Fish body (oval)
+            ctx.beginPath();
+            ctx.ellipse(200, 150, 80, 40, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Fish tail
+            ctx.beginPath();
+            ctx.moveTo(120, 150);
+            ctx.lineTo(90, 130);
+            ctx.lineTo(90, 170);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // Eye
+            ctx.beginPath();
+            ctx.arc(230, 130, 10, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            ctx.setLineDash([]);
+        }
+    </script>
+</body>
+</html>

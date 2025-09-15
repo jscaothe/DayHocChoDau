@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N5 Learning Progress Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9ff;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .progress-ring {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+        
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring-circle {
+            fill: none;
+            stroke-width: 8;
+        }
+        
+        .progress-ring-bg {
+            stroke: #e6e6e6;
+        }
+        
+        .progress-ring-fill {
+            stroke: #4CAF50;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            padding: 0 30px 30px;
+        }
+        
+        .checklist-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .month-section {
+            margin-bottom: 30px;
+            border: 2px solid #e0e7ff;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .month-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .month-header:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b5b95);
+        }
+        
+        .month-title {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .month-progress {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .month-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .month-content.expanded {
+            max-height: 5000px;
+        }
+        
+        .week-section {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 20px;
+        }
+        
+        .week-header {
+            font-weight: bold;
+            color: #4c51bf;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .day-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .day-item:hover {
+            background: #f7fafc;
+            border-left-color: #667eea;
+        }
+        
+        .day-item.completed {
+            background: #f0fff4;
+            border-left-color: #48bb78;
+        }
+        
+        .day-checkbox {
+            margin-right: 15px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        
+        .day-info {
+            flex: 1;
+        }
+        
+        .day-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        
+        .day-content {
+            color: #718096;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, #ffd89b, #19547b);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            margin: 5px;
+            display: inline-block;
+            animation: sparkle 2s infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .export-btn, .import-btn, .reset-btn {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .import-btn {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .reset-btn {
+            background: #f56565;
+            color: white;
+        }
+        
+        .export-btn:hover, .import-btn:hover, .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .motivational-quote {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .toggle-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-arrow.rotated {
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .stat-card {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .month-content.expanded {
+                max-height: 8000px;
+            }
+        }
+        
+        /* Đảm bảo nội dung hiển thị đầy đủ */
+        .month-content.expanded {
+            max-height: none !important;
+            overflow: visible !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎌 N5 Learning Journey 🌸</h1>
+            <p>Theo dõi hành trình học tiếng Nhật của con yêu - Mục tiêu: Thi N5 tháng 12/2025</p>
+        </div>
+        
+        <div class="dashboard">
+            <div class="stat-card">
+                <div class="progress-ring">
+                    <svg width="120" height="120">
+                        <circle class="progress-ring-circle progress-ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="progress-ring-circle progress-ring-fill" cx="60" cy="60" r="52" 
+                                stroke-dasharray="326.73" stroke-dashoffset="326.73" id="overall-progress"/>
+                    </svg>
+                </div>
+                <div class="stat-number" id="overall-percent">0%</div>
+                <div class="stat-label">Tiến độ tổng thể</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" style="color: #48bb78;" id="completed-lessons">0</div>
+                <div class="stat-label">Bài đã hoàn thành</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" style="color: #ed8936;" id="remaining-lessons">90</div>
+                <div class="stat-label">Bài còn lại</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" style="color: #4299e1;" id="current-streak">0</div>
+                <div class="stat-label">Chuỗi ngày liên tiếp</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" style="color: #9f7aea;" id="days-until-exam">90</div>
+                <div class="stat-label">Ngày đến kỳ thi</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" style="color: #f56565;" id="avg-daily-time">60</div>
+                <div class="stat-label">Phút/ngày (TB)</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="checklist-section">
+                <h2 style="margin-bottom: 25px; color: #2d3748; font-size: 1.8em;">📚 Kế hoạch học 90 ngày</h2>
+                
+                <!-- THÁNG 1 -->
+                <div class="month-section">
+                    <div class="month-header" onclick="toggleMonth('month1')">
+                        <div>
+                            <div class="month-title">THÁNG 1 - THÁNG 9/2025</div>
+                            <div class="month-subtitle">Nền tảng Hiragana + Từ vựng cơ bản</div>
+                        </div>
+                        <div>
+                            <span class="month-progress" id="month1-progress">0/28 bài</span>
+                            <span class="toggle-arrow" id="month1-arrow">▼</span>
+                        </div>
+                    </div>
+                    <div class="month-content" id="month1-content">
+                        
+                        <!-- Tuần 1 -->
+                        <div class="week-section">
+                            <div class="week-header">📖 TUẦN 1 (14-20/9): Hoàn thiện Hiragana</div>
+                            
+                            <div class="day-item" id="day1">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(1)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 1 - Chủ nhật 14/9</div>
+                                    <div class="day-content">
+                                        ✨ Ôn lại あ か + học hàng さ (さしすせそ)<br>
+                                        🐟 Từ vựng: さかな (cá), すし (sushi)<br>
+                                        🎮 Game: Tìm thẻ Hiragana + vẽ tranh cá<br>
+                                        <a href="jlpt_day1.html" target="_blank" style="color: #4CAF50; text-decoration: none; font-weight: bold;">📖 Xem chi tiết bài học →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day2">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(2)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 2 - Thứ hai 15/9</div>
+                                    <div class="day-content">
+                                        🎵 Hát bài Hiragana (あ か さ)<br>
+                                        🥚 Học hàng た: たまご (trứng), て (tay)<br>
+                                        🎯 Game "Simon Says" bằng Hiragana<br>
+                                        <a href="jlpt_day2.html" target="_blank" style="color: #4CAF50; text-decoration: none; font-weight: bold;">📖 Xem chi tiết bài học →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day3">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(3)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 3 - Thứ ba 16/9</div>
+                                    <div class="day-content">
+                                        🎤 Warm-up: Hát tất cả chữ đã học<br>
+                                        😺 Học hàng な: なまえ (tên), ねこ (mèo)<br>
+                                        📚 Kể chuyện ngắn với chữ đã học<br>
+                                        <a href="jlpt_day3.html" target="_blank" style="color: #4CAF50; text-decoration: none; font-weight: bold;">📖 Xem chi tiết bài học →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day4">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(4)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 4 - Thứ tư 17/9</div>
+                                    <div class="day-content">
+                                        🎶 Review song: あかさたな<br>
+                                        🌸 Học hàng は: はな (hoa), ひこうき (máy bay)<br>
+                                        🎨 Vẽ tranh kết hợp chữ và nghĩa
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day5">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(5)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 5 - Thứ năm 18/9</div>
+                                    <div class="day-content">
+                                        👩 Học hàng ま: ママ (mẹ), みず (nước)<br>
+                                        🎲 Chơi "Hiragana Bingo"<br>
+                                        💃 Bài hát có động tác
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day6">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(6)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 6 - Thứ sáu 19/9</div>
+                                    <div class="day-content">
+                                        ⛰️ Học や ゆ よ + ら り る れ ろ<br>
+                                        🦁 Từ vựng: やま (núi), らいおん (sư tử)<br>
+                                        ✋ Viết chữ trong cát/bột mì
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day7">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(7)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 7 - Thứ bảy 20/9</div>
+                                    <div class="day-content">
+                                        🎊 Hoàn thành Hiragana: わ を ん<br>
+                                        👦 わたし (tôi) - Tự giới thiệu<br>
+                                        🎉 Celebration party - Đã biết hết Hiragana!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 2 -->
+                        <div class="week-section">
+                            <div class="week-header">👨‍👩‍👧‍👦 TUẦN 2 (21-27/9): Từ vựng gia đình + số đếm</div>
+                            
+                            <div class="day-item" id="day8">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(8)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 8 - Chủ nhật 21/9</div>
+                                    <div class="day-content">
+                                        👨 Gia đình: おとうさん (bố), おかあさん (mẹ)<br>
+                                        🎵 Hát bài "Gia đình tôi"<br>
+                                        🖼️ Vẽ gia đình + viết tên tiếng Nhật
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day9">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(9)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 9 - Thứ hai 22/9</div>
+                                    <div class="day-content">
+                                        🔢 Số 1-5: いち、に、さん、よん、ご<br>
+                                        👏 Chant số đếm với vỗ tay<br>
+                                        🏠 Đếm đồ vật trong nhà
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day10">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(10)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 10 - Thứ ba 23/9</div>
+                                    <div class="day-content">
+                                        🔢 Số 6-10: ろく、なな、はち、きゅう、じゅう<br>
+                                        🎯 Game đếm + hát<br>
+                                        ❓ "Em có mấy cái...?"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day11">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(11)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 11 - Thứ tư 24/9</div>
+                                    <div class="day-content">
+                                        🐕 Động vật: いぬ (chó), ねこ (mèo), とり (chim)<br>
+                                        🎪 Hát bài "Sở thú"<br>
+                                        🔊 Game "Động vật nói gì?"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day12">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(12)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 12 - Thứ năm 25/9</div>
+                                    <div class="day-content">
+                                        🐰 Thêm động vật: うさぎ (thỏ), ぞう (voi), きりん (hươu cao cổ)<br>
+                                        🎭 Nhại tiếng động vật<br>
+                                        🎨 Vẽ sở thú của em
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day13">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(13)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 13 - Thứ sáu 26/9</div>
+                                    <div class="day-content">
+                                        🌈 Màu sắc: あか (đỏ), あお (xanh), きいろ (vàng)<br>
+                                        🔍 Game "Tìm màu trong nhà"<br>
+                                        🎵 Hát bài màu sắc
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day14">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(14)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 14 - Thứ bảy 27/9</div>
+                                    <div class="day-content">
+                                        📝 Mini test: Số, gia đình, động vật<br>
+                                        📚 Ôn tập tổng hợp tuần 2<br>
+                                        🎤 Free time: Hát bài yêu thích
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 3 -->
+                        <div class="week-section">
+                            <div class="week-header">🔤 TUẦN 3 (28/9-4/10): Katakana cơ bản + Lời chào</div>
+                            
+                            <div class="day-item" id="day15">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(15)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 15 - Chủ nhật 28/9</div>
+                                    <div class="day-content">
+                                        🔤 Giới thiệu Katakana: "Chữ cho từ nước ngoài!"<br>
+                                        🍦 Học ア イ ウ エ オ: アイス (ice cream)<br>
+                                        ✍️ Viết Katakana to trên giấy + hát Katakana song
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day16">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(16)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 16 - Thứ hai 29/9</div>
+                                    <div class="day-content">
+                                        📷 Học カ キ ク ケ コ: カメラ (camera), コーヒー (coffee)<br>
+                                        🎮 Game ghép Hiragana-Katakana<br>
+                                        ✋ Practice viết trong không khí
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day17">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(17)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 17 - Thứ ba 30/9</div>
+                                    <div class="day-content">
+                                        🌅 Lời chào cơ bản: おはよう, こんにちは, さようなら<br>
+                                        🧸 Roleplay chào hỏi với gấu bông<br>
+                                        🎵 Hát bài chào hỏi
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day18">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(18)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 18 - Thứ tư 1/10</div>
+                                    <div class="day-content">
+                                        ⚽ Học サ シ ス セ ソ: サッカー (soccer)<br>
+                                        🙏 Thêm lời chào: ありがとう, すみません<br>
+                                        👗 Game lịch sự với búp bê
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day19">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(19)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 19 - Thứ năm 2/10</div>
+                                    <div class="day-content">
+                                        📺 Học タ チ ツ テ ト: テレビ (TV)<br>
+                                        🎭 Thực hành lời chào tình huống thực tế<br>
+                                        🎬 Mini drama: Chào hỏi hàng ngày
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day20">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(20)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 20 - Thứ sáu 3/10</div>
+                                    <div class="day-content">
+                                        📝 Học ナ ニ ヌ ネ ノ<br>
+                                        🔄 Combining practice: Hiragana + Katakana + lời chào<br>
+                                        🎯 Free choice: Em muốn ôn gì?
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day21">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(21)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 21 - Thứ bảy 4/10</div>
+                                    <div class="day-content">
+                                        📊 Test tuần 3: Katakana + Lời chào<br>
+                                        📚 Ôn tập yếu điểm<br>
+                                        🎉 Celebration: Em tiến bộ nhiều rồi!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 4 -->
+                        <div class="week-section">
+                            <div class="week-header">🍎 TUẦN 4 (5-11/10): Hoàn thành Katakana + Từ vựng thực phẩm</div>
+                            
+                            <div class="day-item" id="day22">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(22)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 22 - Chủ nhật 5/10</div>
+                                    <div class="day-content">
+                                        🍔 Học ハ ヒ フ ヘ ホ: ハンバーガー (hamburger)<br>
+                                        🍚 Từ vựng đồ ăn: ごはん (cơm), パン (bánh mì)<br>
+                                        🎵 Hát bài "Bữa ăn của em"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day23">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(23)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 23 - Thứ hai 6/10</div>
+                                    <div class="day-content">
+                                        👩 Học マ ミ ム メ モ: ママ (mama)<br>
+                                        💧 Thêm đồ ăn: みず (nước), ぎゅうにゅう (sữa)<br>
+                                        🍽️ Game "Em muốn ăn gì?"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day24">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(24)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 24 - Thứ ba 7/10</div>
+                                    <div class="day-content">
+                                        🔥 Katakana ア-モ rapid fire<br>
+                                        📝 Học ヤ ユ ヨ + ラ リ ル レ ロ<br>
+                                        🍎 Từ vựng trái cây: りんご (táo), みかん (cam)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day25">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(25)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 25 - Thứ tư 8/10</div>
+                                    <div class="day-content">
+                                        🎯 Hoàn thành Katakana: ワ ヲ ン<br>
+                                        📝 Câu đơn giản đầu tiên: "これは りんご です"<br>
+                                        🎮 Practice với đồ vật thật
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day26">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(26)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 26 - Thứ năm 9/10</div>
+                                    <div class="day-content">
+                                        📊 Test Katakana hoàn chỉnh<br>
+                                        🔄 Practice "これは...です" với nhiều đồ vật<br>
+                                        ❓ Học "なんですか" (cái gì?)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day27">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(27)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 27 - Thứ sáu 10/10</div>
+                                    <div class="day-content">
+                                        📚 Từ vựng đồ dùng học tập: ほん, えんぴつ, かばん<br>
+                                        🎒 Mô tả đồ dùng học tập<br>
+                                        🏫 Hát về trường học
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day28">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(28)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 28 - Thứ bảy 11/10</div>
+                                    <div class="day-content">
+                                        📋 Review tháng 1 toàn bộ<br>
+                                        📝 Mini test: Hiragana, Katakana, từ vựng cơ bản<br>
+                                        🎊 Celebration + planning tháng 2
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- THÁNG 2 -->
+                <div class="month-section">
+                    <div class="month-header" onclick="toggleMonth('month2')">
+                        <div>
+                            <div class="month-title">THÁNG 2 - THÁNG 10/2025</div>
+                            <div class="month-subtitle">Ngữ pháp cơ bản + Mở rộng từ vựng</div>
+                        </div>
+                        <div>
+                            <span class="month-progress" id="month2-progress">0/35 bài</span>
+                            <span class="toggle-arrow" id="month2-arrow">▼</span>
+                        </div>
+                    </div>
+                    <div class="month-content" id="month2-content">
+                        <!-- Tuần 5 -->
+                        <div class="week-section">
+                            <div class="week-header">📝 TUẦN 5 (12-18/10): Ngữ pháp です/だ + Từ vựng cơ thể</div>
+                            
+                            <div class="day-item" id="day29">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(29)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 29 - Chủ nhật 12/10</div>
+                                    <div class="day-content">
+                                        🎵 Warm up với tất cả bài hát đã học<br>
+                                        📚 Ngữ pháp です: わたしは がくせい です<br>
+                                        🧸 Roleplay giới thiệu với gấu bông
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day30">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(30)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 30 - Thứ hai 13/10</div>
+                                    <div class="day-content">
+                                        🔄 Practice です với đồ vật<br>
+                                        👤 Từ vựng cơ thể: あたま (đầu), て (tay), あし (chân)<br>
+                                        🎵 Bài hát "Head, shoulders" phiên bản Nhật
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day31">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(31)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 31 - Thứ ba 14/10</div>
+                                    <div class="day-content">
+                                        👁️ Thêm bộ phận cơ thể: め (mắt), はな (mũi), くち (miệng)<br>
+                                        🎭 Mô tả gương mặt bằng tiếng Nhật<br>
+                                        🎨 Vẽ mặt người + label bằng tiếng Nhật
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day32">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(32)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 32 - Thứ tư 15/10</div>
+                                    <div class="day-content">
+                                        🎵 Review cơ thể qua bài hát<br>
+                                        ❌ Phủ định với じゃありません<br>
+                                        🎯 Game đúng/sai với flashcard
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day33">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(33)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 33 - Thứ năm 16/10</div>
+                                    <div class="day-content">
+                                        🔄 Drill です/じゃありません<br>
+                                        👕 Từ vựng quần áo: ふく, くつ, ぼうし<br>
+                                        👗 Fashion show mini với búp bê
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day34">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(34)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 34 - Thứ sáu 17/10</div>
+                                    <div class="day-content">
+                                        🌤️ Học về thời tiết: はれ, あめ, くもり<br>
+                                        🎵 Hát bài thời tiết<br>
+                                        🌈 Mô tả thời tiết hôm nay
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day35">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(35)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 35 - Thứ bảy 18/10</div>
+                                    <div class="day-content">
+                                        📊 Test tuần 5<br>
+                                        📚 Review yếu điểm<br>
+                                        🎯 Free practice time
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 6 -->
+                        <div class="week-section">
+                            <div class="week-header">🏃 TUẦN 6 (19-25/10): Động từ cơ bản + Hoạt động hàng ngày</div>
+                            
+                            <div class="day-item" id="day36">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(36)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 36 - Chủ nhật 19/10</div>
+                                    <div class="day-content">
+                                        🏠 Động từ đầu tiên - います (có/ở)<br>
+                                        🐱 ねこが にわに います (Mèo ở sân)<br>
+                                        🎮 Game "Ai ở đâu?"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day37">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(37)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 37 - Thứ hai 20/10</div>
+                                    <div class="day-content">
+                                        🔄 Drill います<br>
+                                        📚 Học あります (có - vật): つくえの うえに ほんが あります<br>
+                                        🏠 Mô tả đồ vật trong phòng
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day38">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(38)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 38 - Thứ ba 21/10</div>
+                                    <div class="day-content">
+                                        🔄 Review います/あります<br>
+                                        📍 Vị trí cơ bản: うえ (trên), した (dưới), なか (trong)<br>
+                                        🔍 Game tìm đồ vật
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day39">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(39)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 39 - Thứ tư 22/10</div>
+                                    <div class="day-content">
+                                        🍽️ Động từ たべます (ăn): ごはんを たべます<br>
+                                        🍎 りんごを たべます (Ăn táo)<br>
+                                        👨‍👩‍👧‍👦 Roleplay: Bữa ăn gia đình
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day40">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(40)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 40 - Thứ năm 23/10</div>
+                                    <div class="day-content">
+                                        🔄 Review たべます<br>
+                                        💧 Động từ のみます (uống): みずを のみます<br>
+                                        🥛 ぎゅうにゅうを のみます (Uống sữa)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day41">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(41)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 41 - Thứ sáu 24/10</div>
+                                    <div class="day-content">
+                                        🔄 Drill ăn uống<br>
+                                        👀 Học みます (nhìn/xem): テレビを みます<br>
+                                        📖 ほんを よみます (Đọc sách)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day42">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(42)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 42 - Thứ bảy 25/10</div>
+                                    <div class="day-content">
+                                        📊 Test tuần 6: Động từ cơ bản<br>
+                                        🔄 Practice tổng hợp<br>
+                                        💬 Mini conversation practice
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 7-8 -->
+                        <div class="week-section">
+                            <div class="week-header">📚 TUẦN 7-8 (26/10-8/11): Mở rộng ngữ pháp + Từ vựng</div>
+                            
+                            <div class="day-item" id="day43">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(43)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 43-56</div>
+                                    <div class="day-content">
+                                        📝 Ngữ pháp mở rộng: が, を, に, で<br>
+                                        🏠 Từ vựng nhà cửa: いえ, へや, ドア, まど<br>
+                                        🚗 Từ vựng phương tiện: くるま, バス, でんしゃ<br>
+                                        🎭 Luyện hội thoại tình huống
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 9 -->
+                        <div class="week-section">
+                            <div class="week-header">🎯 TUẦN 9 (9-15/11): Chuẩn bị cho tháng luyện thi</div>
+                            
+                            <div class="day-item" id="day57">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(57)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 57-63</div>
+                                    <div class="day-content">
+                                        📋 Review toàn bộ ngữ pháp N5<br>
+                                        📚 Ôn tập từ vựng theo chủ đề<br>
+                                        🎯 Làm bài tập tổng hợp<br>
+                                        📊 Đánh giá tiến độ chuẩn bị cho tháng 3
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- THÁNG 3 -->
+                <div class="month-section">
+                    <div class="month-header" onclick="toggleMonth('month3')">
+                        <div>
+                            <div class="month-title">THÁNG 3 - THÁNG 11/2025</div>
+                            <div class="month-subtitle">Luyện thi chuyên sâu + Ôn tập tổng hợp</div>
+                        </div>
+                        <div>
+                            <span class="month-progress" id="month3-progress">0/27 bài</span>
+                            <span class="toggle-arrow" id="month3-arrow">▼</span>
+                        </div>
+                    </div>
+                    <div class="month-content" id="month3-content">
+                        <!-- Tuần 10 -->
+                        <div class="week-section">
+                            <div class="week-header">📊 TUẦN 10 (16-22/11): Luyện thi chuyên sâu - Phần 1</div>
+                            
+                            <div class="day-item" id="day64">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(64)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 64 - Chủ nhật 16/11</div>
+                                    <div class="day-content">
+                                        📋 Mock test 1: Từ vựng + Kanji<br>
+                                        🎯 Phân tích lỗi sai và ôn tập<br>
+                                        📚 Review từ vựng yếu điểm
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day65">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(65)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 65 - Thứ hai 17/11</div>
+                                    <div class="day-content">
+                                        👂 Luyện nghe N5: Hội thoại cơ bản<br>
+                                        🎧 Nghe qua anime clips ngắn<br>
+                                        🎯 Làm bài tập nghe hiểu
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day66">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(66)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 66 - Thứ ba 18/11</div>
+                                    <div class="day-content">
+                                        📖 Đọc hiểu N5: Câu đơn giản<br>
+                                        📚 Đọc truyện tranh tiếng Nhật<br>
+                                        🎯 Làm bài tập đọc hiểu
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day67">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(67)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 67 - Thứ tư 19/11</div>
+                                    <div class="day-content">
+                                        📝 Ngữ pháp N5: Ôn tập toàn bộ<br>
+                                        🎯 Làm bài tập ngữ pháp<br>
+                                        📚 Review các mẫu câu quan trọng
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day68">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(68)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 68 - Thứ năm 20/11</div>
+                                    <div class="day-content">
+                                        🎮 Game luyện thi: Speed round<br>
+                                        ⚡ Luyện phản xạ nhanh<br>
+                                        🎯 Tăng tốc độ làm bài
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day69">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(69)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 69 - Thứ sáu 21/11</div>
+                                    <div class="day-content">
+                                        📊 Mock test 2: Toàn diện<br>
+                                        📈 So sánh kết quả với test 1<br>
+                                        🎯 Điều chỉnh chiến lược học
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day70">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(70)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 70 - Thứ bảy 22/11</div>
+                                    <div class="day-content">
+                                        🎉 Review tuần 10<br>
+                                        💪 Xây dựng tự tin<br>
+                                        🎯 Chuẩn bị cho tuần 11
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 11 -->
+                        <div class="week-section">
+                            <div class="week-header">🚀 TUẦN 11 (23-29/11): Luyện thi chuyên sâu - Phần 2</div>
+                            
+                            <div class="day-item" id="day71">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(71)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 71 - Chủ nhật 23/11</div>
+                                    <div class="day-content">
+                                        📋 Mock test 3: Đề thi thật format<br>
+                                        ⏰ Luyện quản lý thời gian<br>
+                                        🎯 Tối ưu hóa chiến lược làm bài
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day72">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(72)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 72 - Thứ hai 24/11</div>
+                                    <div class="day-content">
+                                        👂 Luyện nghe nâng cao<br>
+                                        🎧 Nghe hội thoại dài hơn<br>
+                                        🎯 Luyện kỹ năng ghi chú
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day73">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(73)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 73 - Thứ ba 25/11</div>
+                                    <div class="day-content">
+                                        📖 Đọc hiểu nâng cao<br>
+                                        📚 Đọc đoạn văn dài hơn<br>
+                                        🎯 Luyện kỹ năng tóm tắt
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day74">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(74)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 74 - Thứ tư 26/11</div>
+                                    <div class="day-content">
+                                        📝 Ngữ pháp khó: Ôn tập điểm yếu<br>
+                                        🎯 Luyện các mẫu câu phức tạp<br>
+                                        📚 Review lỗi thường gặp
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day75">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(75)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 75 - Thứ năm 27/11</div>
+                                    <div class="day-content">
+                                        🎮 Game luyện thi nâng cao<br>
+                                        ⚡ Luyện phản xạ siêu nhanh<br>
+                                        🎯 Tăng độ chính xác
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day76">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(76)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 76 - Thứ sáu 28/11</div>
+                                    <div class="day-content">
+                                        📊 Mock test 4: Final practice<br>
+                                        📈 Đánh giá tiến độ cuối cùng<br>
+                                        🎯 Hoàn thiện chiến lược
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day77">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(77)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 77 - Thứ bảy 29/11</div>
+                                    <div class="day-content">
+                                        🎉 Review tuần 11<br>
+                                        💪 Xây dựng tự tin tối đa<br>
+                                        🎯 Chuẩn bị cho tuần cuối
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 12 -->
+                        <div class="week-section">
+                            <div class="week-header">🏆 TUẦN 12 (30/11-6/12): Tuần cuối - Sẵn sàng thi!</div>
+                            
+                            <div class="day-item" id="day78">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(78)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 78 - Chủ nhật 30/11</div>
+                                    <div class="day-content">
+                                        📋 Mock test 5: Đề thi cuối cùng<br>
+                                        🎯 Đánh giá toàn diện<br>
+                                        📊 Xác định điểm mạnh/yếu cuối
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day79">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(79)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 79 - Thứ hai 1/12</div>
+                                    <div class="day-content">
+                                        📚 Review toàn bộ từ vựng N5<br>
+                                        🎯 Ôn tập từ vựng quan trọng<br>
+                                        📝 Làm flashcard cuối cùng
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day80">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(80)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 80 - Thứ ba 2/12</div>
+                                    <div class="day-content">
+                                        📝 Review toàn bộ ngữ pháp N5<br>
+                                        🎯 Ôn tập mẫu câu quan trọng<br>
+                                        📚 Làm bài tập cuối cùng
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day81">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(81)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 81 - Thứ tư 3/12</div>
+                                    <div class="day-content">
+                                        👂 Luyện nghe cuối cùng<br>
+                                        🎧 Nghe lại các bài quan trọng<br>
+                                        🎯 Tăng tự tin cho phần nghe
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day82">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(82)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 82 - Thứ năm 4/12</div>
+                                    <div class="day-content">
+                                        📖 Luyện đọc hiểu cuối cùng<br>
+                                        📚 Đọc lại các bài quan trọng<br>
+                                        🎯 Tăng tự tin cho phần đọc
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day83">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(83)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 83 - Thứ sáu 5/12</div>
+                                    <div class="day-content">
+                                        🎮 Game review tổng hợp<br>
+                                        🎯 Luyện phản xạ cuối cùng<br>
+                                        💪 Xây dựng tự tin tối đa
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="day-item" id="day84">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(84)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 84 - Thứ bảy 6/12</div>
+                                    <div class="day-content">
+                                        🎉 Review toàn bộ hành trình 90 ngày<br>
+                                        🏆 Celebration: Em đã sẵn sàng!<br>
+                                        💪 Chuẩn bị tinh thần cho kỳ thi
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuần 13 - Tuần thi -->
+                        <div class="week-section">
+                            <div class="week-header">🎯 TUẦN 13 (7-13/12): Tuần thi chính thức</div>
+                            
+                            <div class="day-item" id="day85">
+                                <input type="checkbox" class="day-checkbox" onchange="updateProgress(85)">
+                                <div class="day-info">
+                                    <div class="day-title">Ngày 85-90: Tuần thi</div>
+                                    <div class="day-content">
+                                        📅 Ngày 7-13/12: Tuần thi JLPT N5<br>
+                                        🎯 Ôn tập nhẹ nhàng, không căng thẳng<br>
+                                        💪 Giữ tinh thần thoải mái và tự tin<br>
+                                        🏆 Em đã chuẩn bị rất tốt rồi!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3 style="color: #4c51bf; margin-bottom: 20px;">🎯 Thống kê & Công cụ</h3>
+                
+                <div style="background: #f7fafc; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                    <h4 style="color: #2d3748; margin-bottom: 10px;">📈 Tiến độ chi tiết</h4>
+                    <div style="margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Hiragana:</span>
+                            <span id="hiragana-progress">0/7</span>
+                        </div>
+                        <div style="background: #e2e8f0; height: 8px; border-radius: 4px; margin-top: 5px;">
+                            <div id="hiragana-bar" style="background: #48bb78; height: 100%; border-radius: 4px; width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Katakana:</span>
+                            <span id="katakana-progress">0/14</span>
+                        </div>
+                        <div style="background: #e2e8f0; height: 8px; border-radius: 4px; margin-top: 5px;">
+                            <div id="katakana-bar" style="background: #ed8936; height: 100%; border-radius: 4px; width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Từ vựng:</span>
+                            <span id="vocab-progress">0/800</span>
+                        </div>
+                        <div style="background: #e2e8f0; height: 8px; border-radius: 4px; margin-top: 5px;">
+                            <div id="vocab-bar" style="background: #4299e1; height: 100%; border-radius: 4px; width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Ngữ pháp:</span>
+                            <span id="grammar-progress">0/100</span>
+                        </div>
+                        <div style="background: #e2e8f0; height: 8px; border-radius: 4px; margin-top: 5px;">
+                            <div id="grammar-bar" style="background: #9f7aea; height: 100%; border-radius: 4px; width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #fff5f5; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #f56565;">
+                    <h4 style="color: #c53030; margin-bottom: 10px;">⏰ Lưu ý quan trọng</h4>
+                    <p style="color: #742a2a; font-size: 0.9em; line-height: 1.4;">
+                        Học đều đặn mỗi ngày 20:00-21:00. Nếu bỏ lỡ, hãy bù vào ngày hôm sau!
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #2d3748; margin-bottom: 15px;">🏆 Thành tích</h4>
+                    <div id="achievements-container">
+                        <!-- Achievements sẽ được thêm động -->
+                    </div>
+                </div>
+                
+                <button class="export-btn" onclick="exportData()">💾 Xuất dữ liệu</button>
+                <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importData(event)">
+                <button class="import-btn" onclick="document.getElementById('import-file').click()">📥 Nhập dữ liệu</button>
+                <button class="reset-btn" onclick="resetData()">🔄 Reset dữ liệu</button>
+                
+                <div class="motivational-quote" id="daily-quote">
+                    <p>"頑張って！ Ganbatte! - Cố lên nào! 💪"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Dữ liệu tiến độ học tập
+        let learningProgress = {
+            completedDays: new Set(),
+            currentStreak: 0,
+            lastStudyDate: null,
+            totalDays: 90,
+            startDate: '2025-09-14',
+            examDate: '2025-12-15'
+        };
+        
+        // Load dữ liệu từ localStorage khi khởi động
+        function loadData() {
+            const saved = localStorage.getItem('n5_progress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                learningProgress.completedDays = new Set(data.completedDays || []);
+                learningProgress.currentStreak = data.currentStreak || 0;
+                learningProgress.lastStudyDate = data.lastStudyDate || null;
+                
+                // Cập nhật UI với dữ liệu đã lưu
+                updateAllProgress();
+                updateCheckboxes();
+            }
+        }
+        
+        // Lưu dữ liệu vào localStorage
+        function saveData() {
+            const dataToSave = {
+                ...learningProgress,
+                completedDays: Array.from(learningProgress.completedDays),
+                lastUpdated: new Date().toISOString()
+            };
+            localStorage.setItem('n5_progress', JSON.stringify(dataToSave));
+        }
+        
+        // Toggle hiển thị nội dung tháng
+        function toggleMonth(monthId) {
+            const content = document.getElementById(monthId + '-content');
+            const arrow = document.getElementById(monthId + '-arrow');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                arrow.classList.remove('rotated');
+            } else {
+                content.classList.add('expanded');
+                arrow.classList.add('rotated');
+            }
+        }
+        
+        // Cập nhật tiến độ khi tick checkbox
+        function updateProgress(dayNumber) {
+            const checkbox = document.querySelector(`#day${dayNumber} input[type="checkbox"]`);
+            const dayItem = document.getElementById(`day${dayNumber}`);
+            
+            if (checkbox.checked) {
+                learningProgress.completedDays.add(dayNumber);
+                dayItem.classList.add('completed');
+                updateStreak(dayNumber);
+            } else {
+                learningProgress.completedDays.delete(dayNumber);
+                dayItem.classList.remove('completed');
+                recalculateStreak();
+            }
+            
+            updateAllProgress();
+            saveData();
+            checkAchievements();
+        }
+        
+        // Cập nhật tất cả thống kê
+        function updateAllProgress() {
+            const completedCount = learningProgress.completedDays.size;
+            const remainingCount = learningProgress.totalDays - completedCount;
+            const overallPercent = Math.round((completedCount / learningProgress.totalDays) * 100);
+            
+            // Cập nhật số liệu chính
+            document.getElementById('overall-percent').textContent = overallPercent + '%';
+            document.getElementById('completed-lessons').textContent = completedCount;
+            document.getElementById('remaining-lessons').textContent = remainingCount;
+            document.getElementById('current-streak').textContent = learningProgress.currentStreak;
+            
+            // Cập nhật vòng tròn tiến độ
+            const circle = document.getElementById('overall-progress');
+            const circumference = 2 * Math.PI * 52; // r = 52
+            const offset = circumference - (overallPercent / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+            
+            // Cập nhật ngày đến kỳ thi
+            const today = new Date();
+            const examDate = new Date(learningProgress.examDate);
+            const daysUntilExam = Math.ceil((examDate - today) / (1000 * 60 * 60 * 24));
+            document.getElementById('days-until-exam').textContent = Math.max(0, daysUntilExam);
+            
+            // Cập nhật tiến độ từng tháng
+            updateMonthProgress();
+            
+            // Cập nhật tiến độ chi tiết
+            updateDetailedProgress(completedCount);
+        }
+        
+        // Cập nhật tiến độ chi tiết từng kỹ năng
+        function updateDetailedProgress(completedCount) {
+            // Hiragana (tuần 1: ngày 1-7)
+            const hiraganaCompleted = Array.from(learningProgress.completedDays).filter(day => day >= 1 && day <= 7).length;
+            document.getElementById('hiragana-progress').textContent = `${hiraganaCompleted}/7`;
+            const hiraganaBar = document.getElementById('hiragana-bar');
+            if (hiraganaBar) hiraganaBar.style.width = `${(hiraganaCompleted / 7) * 100}%`;
+            
+            // Katakana (tuần 3-4: ngày 15-28)
+            const katakanaCompleted = Array.from(learningProgress.completedDays).filter(day => day >= 15 && day <= 28).length;
+            document.getElementById('katakana-progress').textContent = `${katakanaCompleted}/14`;
+            const katakanaBar = document.getElementById('katakana-bar');
+            if (katakanaBar) katakanaBar.style.width = `${(katakanaCompleted / 14) * 100}%`;
+            
+            // Từ vựng (ước tính dựa trên tiến độ tổng thể)
+            const vocabEstimate = Math.floor((completedCount / 90) * 800);
+            document.getElementById('vocab-progress').textContent = `${vocabEstimate}/800`;
+            const vocabBar = document.getElementById('vocab-bar');
+            if (vocabBar) vocabBar.style.width = `${(vocabEstimate / 800) * 100}%`;
+            
+            // Ngữ pháp (tháng 2-3: ngày 29-90)
+            const grammarCompleted = Array.from(learningProgress.completedDays).filter(day => day >= 29 && day <= 90).length;
+            const grammarEstimate = Math.floor((grammarCompleted / 62) * 100);
+            document.getElementById('grammar-progress').textContent = `${grammarEstimate}/100`;
+            const grammarBar = document.getElementById('grammar-bar');
+            if (grammarBar) grammarBar.style.width = `${(grammarEstimate / 100) * 100}%`;
+        }
+        
+        // Cập nhật tiến độ từng tháng
+        function updateMonthProgress() {
+            // Tháng 1: ngày 1-28
+            const month1Completed = Array.from(learningProgress.completedDays).filter(day => day >= 1 && day <= 28).length;
+            document.getElementById('month1-progress').textContent = `${month1Completed}/28 bài`;
+            
+            // Tháng 2: ngày 29-63
+            const month2Completed = Array.from(learningProgress.completedDays).filter(day => day >= 29 && day <= 63).length;
+            document.getElementById('month2-progress').textContent = `${month2Completed}/35 bài`;
+            
+            // Tháng 3: ngày 64-90
+            const month3Completed = Array.from(learningProgress.completedDays).filter(day => day >= 64 && day <= 90).length;
+            document.getElementById('month3-progress').textContent = `${month3Completed}/27 bài`;
+        }
+        
+        // Cập nhật chuỗi ngày liên tiếp
+        function updateStreak(newDay) {
+            const today = new Date();
+            learningProgress.lastStudyDate = today.toDateString();
+            
+            // Tính toán streak đơn giản
+            const completedArray = Array.from(learningProgress.completedDays).sort((a, b) => b - a);
+            let streak = 0;
+            
+            for (let i = 0; i < completedArray.length; i++) {
+                if (i === 0) {
+                    streak = 1;
+                } else if (completedArray[i-1] - completedArray[i] === 1) {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+            
+            learningProgress.currentStreak = streak;
+        }
+        
+        // Tính lại streak
+        function recalculateStreak() {
+            const completedArray = Array.from(learningProgress.completedDays).sort((a, b) => b - a);
+            let streak = 0;
+            
+            for (let i = 0; i < completedArray.length; i++) {
+                if (i === 0) {
+                    streak = 1;
+                } else if (completedArray[i-1] - completedArray[i] === 1) {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+            
+            learningProgress.currentStreak = Math.max(0, streak);
+        }
+        
+        // Cập nhật trạng thái checkbox
+        function updateCheckboxes() {
+            learningProgress.completedDays.forEach(dayNumber => {
+                const checkbox = document.querySelector(`#day${dayNumber} input[type="checkbox"]`);
+                const dayItem = document.getElementById(`day${dayNumber}`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                    dayItem.classList.add('completed');
+                }
+            });
+        }
+        
+        // Kiểm tra và hiển thị thành tích
+        function checkAchievements() {
+            const completedCount = learningProgress.completedDays.size;
+            const achievements = [];
+            
+            if (completedCount >= 1) achievements.push("🎉 Bắt đầu hành trình!");
+            if (completedCount >= 7) achievements.push("📅 Hoàn thành tuần đầu!");
+            if (completedCount >= 14) achievements.push("💪 Kiên trì 2 tuần!");
+            if (completedCount >= 28) achievements.push("🌟 Hoàn thành tháng 1!");
+            if (completedCount >= 45) achievements.push("📚 Đã học được nửa chương trình!");
+            if (completedCount >= 70) achievements.push("🚀 Sắp đến đích rồi!");
+            if (completedCount >= 90) achievements.push("🏆 HOÀN THÀNH TẤT CẢ!");
+            
+            if (learningProgress.currentStreak >= 7) achievements.push("🔥 Streak 1 tuần!");
+            if (learningProgress.currentStreak >= 14) achievements.push("⚡ Streak 2 tuần!");
+            if (learningProgress.currentStreak >= 30) achievements.push("💫 Streak 1 tháng!");
+            
+            displayAchievements(achievements);
+        }
+        
+        // Hiển thị thành tích
+        function displayAchievements(achievements) {
+            const container = document.getElementById('achievements-container');
+            container.innerHTML = '';
+            
+            achievements.forEach(achievement => {
+                const badge = document.createElement('div');
+                badge.className = 'achievement-badge';
+                badge.textContent = achievement;
+                container.appendChild(badge);
+            });
+        }
+        
+        // Xuất dữ liệu
+        function exportData() {
+            const dataToExport = {
+                ...learningProgress,
+                completedDays: Array.from(learningProgress.completedDays),
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(dataToExport, null, 2)], {
+                type: 'application/json'
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `n5-progress-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        // Nhập dữ liệu
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    learningProgress.completedDays = new Set(data.completedDays || []);
+                    learningProgress.currentStreak = data.currentStreak || 0;
+                    learningProgress.lastStudyDate = data.lastStudyDate || null;
+                    
+                    updateAllProgress();
+                    updateCheckboxes();
+                    saveData();
+                    checkAchievements();
+                    
+                    alert('✅ Đã nhập dữ liệu thành công!');
+                } catch (error) {
+                    alert('❌ Lỗi khi nhập dữ liệu. Vui lòng kiểm tra file.');
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        // Reset dữ liệu
+        function resetData() {
+            if (confirm('⚠️ Bạn có chắc muốn xóa tất cả tiến độ không?')) {
+                learningProgress = {
+                    completedDays: new Set(),
+                    currentStreak: 0,
+                    lastStudyDate: null,
+                    totalDays: 90,
+                    startDate: '2025-09-14',
+                    examDate: '2025-12-15'
+                };
+                
+                // Reset UI
+                document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                    cb.checked = false;
+                });
+                document.querySelectorAll('.day-item').forEach(item => {
+                    item.classList.remove('completed');
+                });
+                
+                updateAllProgress();
+                saveData();
+                document.getElementById('achievements-container').innerHTML = '';
+                
+                alert('🔄 Đã reset tất cả dữ liệu!');
+            }
+        }
+        
+        // Khởi động ứng dụng
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            updateAllProgress();
+            checkAchievements();
+            
+            // Mở tháng 1 mặc định
+            toggleMonth('month1');
+            
+            // Đảm bảo tháng 3 cũng có thể mở được
+            const month3Content = document.getElementById('month3-content');
+            if (month3Content) {
+                month3Content.style.maxHeight = '5000px';
+            }
+            
+            // Cập nhật quote ngẫu nhiên
+            const quotes = [
+                '"頑張って！ Ganbatte! - Cố lên nào! 💪"',
+                '"継続は力なり - Kiên trì là sức mạnh! ⭐"',
+                '"一歩一歩 - Từng bước một! 👣"',
+                '"夢は叶う - Ước mơ sẽ thành hiện thực! 🌈"',
+                '"諦めないで - Đừng bỏ cuộc! 🌸"'
+            ];
+            
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('daily-quote').innerHTML = `<p>${randomQuote}</p>`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 - Ngày 2: Học Hiragana たちつてと</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .lesson-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF6B6B;
+        }
+        .hiragana-card {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hiragana-card:hover {
+            transform: scale(1.1);
+        }
+        .hiragana-large {
+            font-size: 3em;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        .vocabulary-item {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2196F3;
+        }
+        .game-section {
+            background: #fff3e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF9800;
+        }
+        .story-section {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #9C27B0;
+        }
+        .song-section {
+            background: #e8f5e8;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .time-slot {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .simon-card {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            background: #ffeb3b;
+            border-radius: 15px;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 120px;
+            font-size: 2.5em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .simon-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .simon-card.active {
+            background: #4caf50;
+            color: white;
+            transform: scale(1.1);
+        }
+        .examples {
+            background: #f0f4c3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .example-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+        .air-writing {
+            background: #e1f5fe;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .air-writing-area {
+            background: white;
+            border: 3px dashed #2196F3;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌸 JLPT N5 - Ngày 2 🌸</h1>
+            <h2>Thứ hai, 15/9/2025</h2>
+            <p>Học Hiragana hàng た: たちつてと</p>
+        </div>
+
+        <!-- 20:00-20:15: Hát lại bài Hiragana -->
+        <div class="lesson-section">
+            <div class="time-slot">20:00-20:15: Hát lại bài Hiragana (あ か さ)</div>
+            <h3>🎵 Ôn tập bài hát Hiragana</h3>
+            <div class="song-section">
+                <h4>🎼 Bài hát "あ か さ の うた" (Bài hát A-Ka-Sa)</h4>
+                <div class="audio-player">
+                    <p><strong>Lời bài hát mở rộng:</strong></p>
+                    <p style="font-size: 1.2em; line-height: 1.6;">
+                        あ あ あ - あひる あかい (A a a - Vịt con đỏ đỏ)<br>
+                        か か か - からす くろい (Ka ka ka - Quạ đen đen)<br>
+                        さ さ さ - さかな およぐ (Sa sa sa - Cá bơi lội)<br>
+                        あ か さ で - あかるい (A Ka Sa - Sáng sủa)<br>
+                        いっしょに うたおう！(Cùng hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('akasa-song')">🎵 Phát nhạc</button>
+                </div>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">あ</div>
+                        <p>A - あひる (vịt)</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">か</div>
+                        <p>Ka - からす (quạ)</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">さ</div>
+                        <p>Sa - さかな (cá)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:15-20:30: Học hàng た -->
+        <div class="lesson-section">
+            <div class="time-slot">20:15-20:30: Học hàng た: たちつてと</div>
+            <h3>✨ Học chữ mới: たちつてと</h3>
+            
+            <div class="vocabulary-item">
+                <h4>📚 Từ vựng chính:</h4>
+                <div class="examples">
+                    <div class="example-item">
+                        <strong>🥚 たまご (tamago) - Trứng</strong><br>
+                        <em>Câu thần chú: "Trứng た-ま-ご tròn tròn"</em><br>
+                        Ví dụ 1: おおきい たまご (trứng to)<br>
+                        Ví dụ 2: ちいさい たまご (trứng nhỏ)<br>
+                        Ví dụ 3: あかい たまご (trứng đỏ)
+                    </div>
+                    <div class="example-item">
+                        <strong>✋ て (te) - Tay</strong><br>
+                        <em>Câu thần chú: "Vẫy tay chào て て て"</em><br>
+                        Ví dụ 1: てを あげる (giơ tay)<br>
+                        Ví dụ 2: てを ふる (vẫy tay)<br>
+                        Ví dụ 3: てが きれい (tay sạch)
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                <div class="hiragana-card" onclick="playHiragana('ta')">
+                    <div class="hiragana-large">た</div>
+                    <p>TA</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('chi')">
+                    <div class="hiragana-large">ち</div>
+                    <p>CHI</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('tsu')">
+                    <div class="hiragana-large">つ</div>
+                    <p>TSU</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('te')">
+                    <div class="hiragana-large">て</div>
+                    <p>TE</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('to')">
+                    <div class="hiragana-large">と</div>
+                    <p>TO</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:30-20:45: Game Simon Says -->
+        <div class="game-section">
+            <div class="time-slot">20:30-20:45: Game "Simon Says" bằng Hiragana</div>
+            <h3>🎮 Trò chơi: Simon Says Hiragana</h3>
+            
+            <p><strong>Cách chơi:</strong> Em hãy làm theo lời Simon! Click vào chữ mà Simon nói!</p>
+            <div id="simonGame" style="text-align: center;">
+                <div class="simon-card" data-hiragana="あ" onclick="simonSays('あ')">あ</div>
+                <div class="simon-card" data-hiragana="か" onclick="simonSays('か')">か</div>
+                <div class="simon-card" data-hiragana="さ" onclick="simonSays('さ')">さ</div>
+                <div class="simon-card" data-hiragana="た" onclick="simonSays('た')">た</div>
+                <div class="simon-card" data-hiragana="ち" onclick="simonSays('ち')">ち</div>
+                <div class="simon-card" data-hiragana="つ" onclick="simonSays('つ')">つ</div>
+                <div class="simon-card" data-hiragana="て" onclick="simonSays('て')">て</div>
+                <div class="simon-card" data-hiragana="と" onclick="simonSays('と')">と</div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <p id="simonInstruction" style="font-size: 1.3em; font-weight: bold; color: #FF6B6B;">Simon nói: "Chạm vào あ!"</p>
+                <button class="btn" onclick="startSimonGame()">🎯 Bắt đầu game</button>
+                <button class="btn" onclick="resetSimonGame()">🔄 Chơi lại</button>
+            </div>
+            
+            <p id="simonResult" style="font-size: 1.2em; font-weight: bold; margin-top: 20px; text-align: center;"></p>
+        </div>
+
+        <!-- 20:45-21:00: Viết trong không khí -->
+        <div class="lesson-section">
+            <div class="time-slot">20:45-21:00: Viết trong không khí + hát chữ cái</div>
+            <h3>✋ Viết Hiragana trong không khí</h3>
+            
+            <div class="air-writing">
+                <h4>🎯 Hướng dẫn viết trong không khí:</h4>
+                <p>Em hãy dùng ngón tay viết chữ trong không khí theo hướng dẫn!</p>
+                
+                <div class="air-writing-area" id="airWritingArea">
+                    <p>Click "Bắt đầu" để bắt đầu viết chữ trong không khí!</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn" onclick="startAirWriting('た')">た (TA)</button>
+                    <button class="btn" onclick="startAirWriting('ち')">ち (CHI)</button>
+                    <button class="btn" onclick="startAirWriting('つ')">つ (TSU)</button>
+                    <button class="btn" onclick="startAirWriting('て')">て (TE)</button>
+                    <button class="btn" onclick="startAirWriting('と')">と (TO)</button>
+                </div>
+            </div>
+
+            <div class="song-section">
+                <h4>🎵 Bài hát "たちつてと":</h4>
+                <div class="audio-player">
+                    <p style="font-size: 1.2em;">
+                        <strong>"たちつてと の うた" (Bài hát Ta-Chi-Tsu-Te-To)</strong><br><br>
+                        たまご たまご たまご (Trứng trứng trứng)<br>
+                        ちいさい ちいさい ちいさい (Nhỏ nhỏ nhỏ)<br>
+                        つくえ つくえ つくえ (Bàn bàn bàn)<br>
+                        て て て て て (Tay tay tay tay tay)<br>
+                        とけい とけい とけい (Đồng hồ đồng hồ đồng hồ)<br>
+                        たちつてと うたおう！(Ta-Chi-Tsu-Te-To hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('tachitsuteto-song')">🎵 Hát cùng</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài tập về nhà -->
+        <div class="lesson-section">
+            <h3>📚 Bài tập về nhà</h3>
+            <p><strong>[Suy luận] - Bài tập được thiết kế để củng cố kiến thức:</strong></p>
+            <ul>
+                <li>Viết chữ たちつてと 3 lần mỗi chữ</li>
+                <li>Hát bài "たちつてと" với bố mẹ</li>
+                <li>Tìm 2 đồ vật có tên bắt đầu bằng chữ た trong nhà</li>
+                <li>Viết trong không khí tất cả chữ đã học (あ-と)</li>
+            </ul>
+        </div>
+
+        <!-- Progress tracking -->
+        <div class="lesson-section">
+            <h3>📊 Tiến độ học tập</h3>
+            <p>✅ Đã học: あ か さ たちつてと</p>
+            <p>🎯 Mục tiêu ngày mai: Học なにぬねの</p>
+            <p>🏆 Điểm số hôm nay: <span id="todayScore">0</span>/100</p>
+            <button class="btn" onclick="calculateScore()">📈 Tính điểm</button>
+        </div>
+    </div>
+
+    <script>
+        // Simon Says Game Logic
+        let simonSequence = [];
+        let currentStep = 0;
+        let gameActive = false;
+        let score = 0;
+
+        function startSimonGame() {
+            simonSequence = [];
+            currentStep = 0;
+            gameActive = true;
+            score = 0;
+            document.getElementById('simonResult').textContent = '';
+            addToSequence();
+        }
+
+        function addToSequence() {
+            const hiraganaList = ['あ', 'か', 'さ', 'た', 'ち', 'つ', 'て', 'と'];
+            const randomHiragana = hiraganaList[Math.floor(Math.random() * hiraganaList.length)];
+            simonSequence.push(randomHiragana);
+            
+            showSequence();
+        }
+
+        function showSequence() {
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < simonSequence.length) {
+                    highlightCard(simonSequence[i]);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    document.getElementById('simonInstruction').textContent = 'Bây giờ em làm theo Simon!';
+                }
+            }, 1000);
+        }
+
+        function highlightCard(hiragana) {
+            const card = document.querySelector(`[data-hiragana="${hiragana}"]`);
+            card.classList.add('active');
+            setTimeout(() => {
+                card.classList.remove('active');
+            }, 500);
+        }
+
+        function simonSays(hiragana) {
+            if (!gameActive) return;
+            
+            if (hiragana === simonSequence[currentStep]) {
+                currentStep++;
+                score += 10;
+                document.getElementById('simonResult').textContent = `Tuyệt vời! +10 điểm! (${score} điểm)`;
+                
+                if (currentStep === simonSequence.length) {
+                    if (simonSequence.length < 5) {
+                        setTimeout(() => {
+                            currentStep = 0;
+                            addToSequence();
+                        }, 1000);
+                    } else {
+                        gameActive = false;
+                        document.getElementById('simonResult').textContent = `🎉 Hoàn thành! Em được ${score} điểm!`;
+                    }
+                }
+            } else {
+                gameActive = false;
+                document.getElementById('simonResult').textContent = `Game over! Em được ${score} điểm!`;
+            }
+        }
+
+        function resetSimonGame() {
+            simonSequence = [];
+            currentStep = 0;
+            gameActive = false;
+            score = 0;
+            document.getElementById('simonResult').textContent = '';
+            document.getElementById('simonInstruction').textContent = 'Simon nói: "Chạm vào あ!"';
+        }
+
+        // Air Writing Logic
+        function startAirWriting(hiragana) {
+            const area = document.getElementById('airWritingArea');
+            const instructions = {
+                'た': 'Viết た: Nét ngang, nét dọc, nét ngang ngắn',
+                'ち': 'Viết ち: Nét cong, nét dọc, nét ngang',
+                'つ': 'Viết つ: Nét cong dài từ trên xuống',
+                'て': 'Viết て: Nét ngang, nét dọc, nét cong',
+                'と': 'Viết と: Nét ngang, nét dọc, nét cong dài'
+            };
+            
+            area.innerHTML = `
+                <div style="font-size: 4em; color: #FF6B6B; margin-bottom: 20px;">${hiragana}</div>
+                <p style="font-size: 1.1em; color: #333;">${instructions[hiragana]}</p>
+                <p style="color: #666; margin-top: 10px;">Em hãy dùng ngón tay viết chữ này trong không khí!</p>
+            `;
+            
+            // Add animation
+            area.style.animation = 'pulse 2s infinite';
+            setTimeout(() => {
+                area.style.animation = '';
+            }, 5000);
+        }
+
+        // Sound functions
+        function playSound(soundType) {
+            console.log(`Playing sound: ${soundType}`);
+            alert(`🔊 Đang phát âm thanh: ${soundType}\n[Chưa xác minh] - Cần file âm thanh thực tế`);
+        }
+
+        function playHiragana(hiragana) {
+            console.log(`Playing hiragana: ${hiragana}`);
+            alert(`🔊 Phát âm: ${hiragana}`);
+        }
+
+        // Score calculation
+        function calculateScore() {
+            let totalScore = 0;
+            
+            // Check Simon Says game
+            if (score > 0) totalScore += Math.min(score, 50);
+            
+            // Check air writing interaction
+            totalScore += 30; // Base score for participation
+            
+            // Check hiragana card interactions
+            totalScore += 20; // Base score for learning
+            
+            document.getElementById('todayScore').textContent = totalScore;
+            
+            if (totalScore >= 80) {
+                alert('🌟 Xuất sắc! Em học rất tốt hôm nay!');
+            } else if (totalScore >= 60) {
+                alert('👍 Tốt lắm! Em đã cố gắng nhiều!');
+            } else {
+                alert('💪 Em hãy thử chơi game Simon Says để tăng điểm nhé!');
+            }
+        }
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

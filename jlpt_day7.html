@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 - Ngày 7: Học Hiragana わ を ん + Ôn tập toàn bộ Hiragana</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .lesson-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+        .lesson-section h2 {
+            color: #667eea;
+            margin-top: 0;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        .hiragana-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .hiragana-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .hiragana-card:hover {
+            transform: translateY(-5px);
+        }
+        .hiragana-char {
+            font-size: 2.5em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .hiragana-romaji {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .hiragana-word {
+            font-size: 1em;
+            color: #888;
+        }
+        .game-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        .game-section h2 {
+            color: white;
+            text-align: center;
+            margin-top: 0;
+        }
+        .game-area {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .game-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .game-button:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+        .game-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .score {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .activity-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        .activity-section h2 {
+            color: white;
+            text-align: center;
+            margin-top: 0;
+        }
+        .activity-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #fff;
+        }
+        .activity-item h3 {
+            margin-top: 0;
+            color: #fff;
+        }
+        .activity-item p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        .celebration {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 15px;
+            margin: 20px 0;
+            display: none;
+        }
+        .celebration h2 {
+            color: #fff;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .celebration p {
+            color: #fff;
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+        }
+        .back-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        .review-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        .review-section h2 {
+            color: #667eea;
+            text-align: center;
+            margin-top: 0;
+        }
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .review-card {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .review-card:hover {
+            transform: scale(1.05);
+        }
+        .review-char {
+            font-size: 1.8em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .review-romaji {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎌 JLPT N5 - Ngày 7</h1>
+            <p>Học Hiragana わ を ん + Ôn tập toàn bộ Hiragana</p>
+        </div>
+
+        <div class="lesson-section">
+            <h2>📚 Học Hiragana わ を ん</h2>
+            <div class="hiragana-grid">
+                <div class="hiragana-card">
+                    <div class="hiragana-char">わ</div>
+                    <div class="hiragana-romaji">WA</div>
+                    <div class="hiragana-word">わし (đại bàng)</div>
+                </div>
+                <div class="hiragana-card">
+                    <div class="hiragana-char">を</div>
+                    <div class="hiragana-romaji">WO</div>
+                    <div class="hiragana-word">を (trợ từ)</div>
+                </div>
+                <div class="hiragana-card">
+                    <div class="hiragana-char">ん</div>
+                    <div class="hiragana-romaji">N</div>
+                    <div class="hiragana-word">ん (âm câm)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-section">
+            <h2>🔄 Ôn tập toàn bộ Hiragana</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #666; margin-bottom: 20px;">
+                Chúc mừng! Bạn đã học xong tất cả 46 chữ Hiragana cơ bản! 🎉
+            </p>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="review-char">あ</div>
+                    <div class="review-romaji">A</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">い</div>
+                    <div class="review-romaji">I</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">う</div>
+                    <div class="review-romaji">U</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">え</div>
+                    <div class="review-romaji">E</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">お</div>
+                    <div class="review-romaji">O</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">か</div>
+                    <div class="review-romaji">KA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">き</div>
+                    <div class="review-romaji">KI</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">く</div>
+                    <div class="review-romaji">KU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">け</div>
+                    <div class="review-romaji">KE</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">こ</div>
+                    <div class="review-romaji">KO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">さ</div>
+                    <div class="review-romaji">SA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">し</div>
+                    <div class="review-romaji">SHI</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">す</div>
+                    <div class="review-romaji">SU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">せ</div>
+                    <div class="review-romaji">SE</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">そ</div>
+                    <div class="review-romaji">SO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">た</div>
+                    <div class="review-romaji">TA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ち</div>
+                    <div class="review-romaji">CHI</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">つ</div>
+                    <div class="review-romaji">TSU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">て</div>
+                    <div class="review-romaji">TE</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">と</div>
+                    <div class="review-romaji">TO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">な</div>
+                    <div class="review-romaji">NA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">に</div>
+                    <div class="review-romaji">NI</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ぬ</div>
+                    <div class="review-romaji">NU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ね</div>
+                    <div class="review-romaji">NE</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">の</div>
+                    <div class="review-romaji">NO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">は</div>
+                    <div class="review-romaji">HA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ひ</div>
+                    <div class="review-romaji">HI</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ふ</div>
+                    <div class="review-romaji">FU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">へ</div>
+                    <div class="review-romaji">HE</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ほ</div>
+                    <div class="review-romaji">HO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ま</div>
+                    <div class="review-romaji">MA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">み</div>
+                    <div class="review-romaji">MI</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">む</div>
+                    <div class="review-romaji">MU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">め</div>
+                    <div class="review-romaji">ME</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">も</div>
+                    <div class="review-romaji">MO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">や</div>
+                    <div class="review-romaji">YA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ゆ</div>
+                    <div class="review-romaji">YU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">よ</div>
+                    <div class="review-romaji">YO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ら</div>
+                    <div class="review-romaji">RA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">り</div>
+                    <div class="review-romaji">RI</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">る</div>
+                    <div class="review-romaji">RU</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">れ</div>
+                    <div class="review-romaji">RE</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ろ</div>
+                    <div class="review-romaji">RO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">わ</div>
+                    <div class="review-romaji">WA</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">を</div>
+                    <div class="review-romaji">WO</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-char">ん</div>
+                    <div class="review-romaji">N</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-section">
+            <h2>🎮 Game: Hiragana Master Challenge</h2>
+            <div class="game-area">
+                <div class="score">Điểm: <span id="score">0</span></div>
+                <div id="game-display" style="font-size: 3em; margin: 20px 0; min-height: 80px;">
+                    Nhấn "Bắt đầu" để chơi!
+                </div>
+                <button class="game-button" onclick="startGame()">🎯 Bắt đầu</button>
+                <button class="game-button" onclick="resetGame()">🔄 Reset</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+        </div>
+
+        <div class="activity-section">
+            <h2>✋ Hoạt động xúc giác: Viết Hiragana</h2>
+            <div class="activity-item">
+                <h3>🎨 Viết trong cát</h3>
+                <p>Mô phỏng viết chữ Hiragana trong cát. Di chuyển ngón tay theo hình dạng của từng chữ cái.</p>
+            </div>
+            <div class="activity-item">
+                <h3>🌾 Viết trong bột mì</h3>
+                <p>Mô phỏng viết chữ Hiragana trong bột mì. Cảm nhận sự mềm mại và kết cấu của bột.</p>
+            </div>
+            <div class="activity-item">
+                <h3>💧 Viết trong nước</h3>
+                <p>Mô phỏng viết chữ Hiragana trong nước. Cảm nhận sự mát lạnh và dòng chảy của nước.</p>
+            </div>
+            <div class="activity-item">
+                <h3>🔥 Viết trong lửa</h3>
+                <p>Mô phỏng viết chữ Hiragana trong lửa. Cảm nhận sự ấm áp và năng lượng của lửa.</p>
+            </div>
+        </div>
+
+        <div class="celebration" id="celebration">
+            <h2>🎉 Chúc mừng!</h2>
+            <p>Bạn đã hoàn thành việc học tất cả 46 chữ Hiragana cơ bản!</p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="n5_progress_tracker.html" class="back-button">← Quay lại Tracker</a>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let gameActive = false;
+        let currentTarget = '';
+        let gameInterval;
+        let progress = 0;
+
+        const hiraganaChars = [
+            'あ', 'い', 'う', 'え', 'お',
+            'か', 'き', 'く', 'け', 'こ',
+            'さ', 'し', 'す', 'せ', 'そ',
+            'た', 'ち', 'つ', 'て', 'と',
+            'な', 'に', 'ぬ', 'ね', 'の',
+            'は', 'ひ', 'ふ', 'へ', 'ほ',
+            'ま', 'み', 'む', 'め', 'も',
+            'や', 'ゆ', 'よ',
+            'ら', 'り', 'る', 'れ', 'ろ',
+            'わ', 'を', 'ん'
+        ];
+
+        function startGame() {
+            if (gameActive) return;
+            
+            gameActive = true;
+            score = 0;
+            progress = 0;
+            updateScore();
+            updateProgress();
+            
+            // Bắt đầu game
+            showRandomChar();
+            
+            // Tự động thay đổi mục tiêu sau 3 giây
+            gameInterval = setInterval(() => {
+                if (gameActive) {
+                    showRandomChar();
+                }
+            }, 3000);
+        }
+
+        function showRandomChar() {
+            const randomIndex = Math.floor(Math.random() * hiraganaChars.length);
+            currentTarget = hiraganaChars[randomIndex];
+            
+            document.getElementById('game-display').innerHTML = `
+                <div style="font-size: 3em; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                    ${currentTarget}
+                </div>
+                <div style="font-size: 1.2em; margin-top: 10px;">
+                    Click vào chữ này để ghi điểm!
+                </div>
+            `;
+        }
+
+        function resetGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            score = 0;
+            progress = 0;
+            updateScore();
+            updateProgress();
+            document.getElementById('game-display').innerHTML = 'Nhấn "Bắt đầu" để chơi!';
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+        }
+
+        function updateProgress() {
+            const progressPercent = (score / 50) * 100; // 50 điểm = 100%
+            document.getElementById('progress').style.width = progressPercent + '%';
+            
+            if (score >= 50) {
+                showCelebration();
+                resetGame();
+            }
+        }
+
+        function showCelebration() {
+            document.getElementById('celebration').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('celebration').style.display = 'none';
+            }, 5000);
+        }
+
+        // Xử lý click vào game display
+        document.getElementById('game-display').addEventListener('click', function() {
+            if (gameActive && currentTarget) {
+                score += 10;
+                updateScore();
+                updateProgress();
+                
+                // Hiệu ứng click
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            }
+        });
+
+        // Thêm hiệu ứng hover cho các card
+        document.querySelectorAll('.hiragana-card, .review-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

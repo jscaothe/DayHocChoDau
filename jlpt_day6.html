@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 - Ngày 6: Học Hiragana や ゆ よ + ら り る れ ろ</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .lesson-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF6B6B;
+        }
+        .hiragana-card {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hiragana-card:hover {
+            transform: scale(1.1);
+        }
+        .hiragana-large {
+            font-size: 3em;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        .vocabulary-item {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2196F3;
+        }
+        .game-section {
+            background: #fff3e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF9800;
+        }
+        .song-section {
+            background: #e8f5e8;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .time-slot {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .speed-card {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: #ffeb3b;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 100px;
+            font-size: 2.5em;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .speed-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .speed-card.active {
+            background: #4caf50;
+            color: white;
+            transform: scale(1.1);
+        }
+        .examples {
+            background: #f0f4c3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .example-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+        .mountain-section {
+            background: linear-gradient(45deg, #8BC34A, #4CAF50);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .mountain {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid #4CAF50;
+            margin: 10px;
+            position: relative;
+            animation: mountain 3s ease-in-out infinite;
+        }
+        .mountain::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -20px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 30px solid #8BC34A;
+        }
+        @keyframes mountain {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .lion-section {
+            background: linear-gradient(45deg, #FF9800, #FFC107);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .lion {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: #FF9800;
+            border-radius: 50%;
+            margin: 10px;
+            position: relative;
+            animation: roar 2s ease-in-out infinite;
+        }
+        .lion::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            background: #FFC107;
+            border-radius: 50% 50% 0 0;
+        }
+        @keyframes roar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .tactile-section {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .tactile-area {
+            background: white;
+            border: 3px dashed #9C27B0;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+        .sand-texture {
+            background: linear-gradient(45deg, #D7CCC8, #BCAAA4);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .sand-texture:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌸 JLPT N5 - Ngày 6 🌸</h1>
+            <h2>Thứ sáu, 19/9/2025</h2>
+            <p>Học Hiragana や ゆ よ + ら り る れ ろ</p>
+        </div>
+
+        <!-- 20:00-20:15: Hát tổng hợp -->
+        <div class="lesson-section">
+            <div class="time-slot">20:00-20:15: Hát tổng hợp あ-ま</div>
+            <h3>🎵 Ôn tập bài hát Hiragana</h3>
+            <div class="song-section">
+                <h4>🎼 Bài hát "あ か さ た な は ま の うた" (Bài hát A-Ka-Sa-Ta-Na-Ha-Ma)</h4>
+                <div class="audio-player">
+                    <p><strong>Lời bài hát tổng hợp:</strong></p>
+                    <p style="font-size: 1.1em; line-height: 1.6;">
+                        あ あ あ - あひる あかい (A a a - Vịt con đỏ đỏ)<br>
+                        か か か - からす くろい (Ka ka ka - Quạ đen đen)<br>
+                        さ さ さ - さかな およぐ (Sa sa sa - Cá bơi lội)<br>
+                        た た た - たまご まるい (Ta ta ta - Trứng tròn tròn)<br>
+                        な な な - なまえ きれい (Na na na - Tên đẹp đẹp)<br>
+                        は は は - はな きれい (Ha ha ha - Hoa đẹp đẹp)<br>
+                        ま ま ま - ママ だいすき (Ma ma ma - Mẹ yêu thương)<br>
+                        あ か さ た な は ま で - あかるい (A Ka Sa Ta Na Ha Ma - Sáng sủa)<br>
+                        いっしょに うたおう！(Cùng hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('akasatanahama-song')">🎵 Phát nhạc</button>
+                </div>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">あ</div>
+                        <p>A</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">か</div>
+                        <p>Ka</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">さ</div>
+                        <p>Sa</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">た</div>
+                        <p>Ta</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">な</div>
+                        <p>Na</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">は</div>
+                        <p>Ha</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">ま</div>
+                        <p>Ma</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:15-20:30: Học や ゆ よ + ら り る れ ろ -->
+        <div class="lesson-section">
+            <div class="time-slot">20:15-20:30: Học や ゆ よ + ら り る れ ろ</div>
+            <h3>✨ Học chữ mới: や ゆ よ + ら り る れ ろ</h3>
+            
+            <div class="vocabulary-item">
+                <h4>📚 Từ vựng chính:</h4>
+                <div class="examples">
+                    <div class="example-item">
+                        <strong>⛰️ やま (yama) - Núi</strong><br>
+                        <em>Câu thần chú: "Núi やま cao vút"</em><br>
+                        Ví dụ 1: たかい やま (núi cao)<br>
+                        Ví dụ 2: やまに のぼる (leo núi)<br>
+                        Ví dụ 3: やまが きれい (núi đẹp)
+                    </div>
+                    <div class="example-item">
+                        <strong>🦁 らいおん (raion) - Sư tử</strong><br>
+                        <em>Câu thần chú: "Gầm らいおん roar roar"</em><br>
+                        Ví dụ 1: らいおんが おおきい (sư tử to)<br>
+                        Ví dụ 2: らいおんの たてがみ (bờm sư tử)<br>
+                        Ví dụ 3: らいおんが ほえる (sư tử gầm)
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                <div class="hiragana-card" onclick="playHiragana('ya')">
+                    <div class="hiragana-large">や</div>
+                    <p>YA</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('yu')">
+                    <div class="hiragana-large">ゆ</div>
+                    <p>YU</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('yo')">
+                    <div class="hiragana-large">よ</div>
+                    <p>YO</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('ra')">
+                    <div class="hiragana-large">ら</div>
+                    <p>RA</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('ri')">
+                    <div class="hiragana-large">り</div>
+                    <p>RI</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('ru')">
+                    <div class="hiragana-large">る</div>
+                    <p>RU</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('re')">
+                    <div class="hiragana-large">れ</div>
+                    <p>RE</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('ro')">
+                    <div class="hiragana-large">ろ</div>
+                    <p>RO</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:30-20:45: Game nhận diện nhanh -->
+        <div class="game-section">
+            <div class="time-slot">20:30-20:45: Game nhận diện nhanh</div>
+            <h3>⚡ Trò chơi: Nhận diện nhanh Hiragana</h3>
+            
+            <p><strong>Cách chơi:</strong> Em hãy click vào chữ Hiragana khi nó xuất hiện!</p>
+            <div id="speedGame" style="text-align: center;">
+                <div class="speed-card" data-hiragana="や" onclick="speedClick(this)">や</div>
+                <div class="speed-card" data-hiragana="ゆ" onclick="speedClick(this)">ゆ</div>
+                <div class="speed-card" data-hiragana="よ" onclick="speedClick(this)">よ</div>
+                <div class="speed-card" data-hiragana="ら" onclick="speedClick(this)">ら</div>
+                <div class="speed-card" data-hiragana="り" onclick="speedClick(this)">り</div>
+                <div class="speed-card" data-hiragana="る" onclick="speedClick(this)">る</div>
+                <div class="speed-card" data-hiragana="れ" onclick="speedClick(this)">れ</div>
+                <div class="speed-card" data-hiragana="ろ" onclick="speedClick(this)">ろ</div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <p id="speedTarget" style="font-size: 1.5em; font-weight: bold; color: #FF6B6B;">Mục tiêu: や</p>
+                <p id="speedScore" style="font-size: 1.2em; color: #4CAF50;">Điểm: 0</p>
+                <button class="btn" onclick="startSpeedGame()">⚡ Bắt đầu</button>
+                <button class="btn" onclick="resetSpeedGame()">🔄 Chơi lại</button>
+            </div>
+            
+            <p id="speedResult" style="font-size: 1.2em; font-weight: bold; margin-top: 20px; text-align: center;"></p>
+        </div>
+
+        <!-- 20:45-21:00: Viết chữ trong cát/bột mì -->
+        <div class="tactile-section">
+            <div class="time-slot">20:45-21:00: Viết chữ trong cát/bột mì (cảm giác xúc giác)</div>
+            <h3>✋ Viết Hiragana bằng cảm giác xúc giác</h3>
+            
+            <div class="tactile-area" id="tactileArea">
+                <p>Click "Bắt đầu" để bắt đầu viết chữ bằng cảm giác xúc giác!</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="btn" onclick="startTactileWriting('や')">や (YA)</button>
+                <button class="btn" onclick="startTactileWriting('ゆ')">ゆ (YU)</button>
+                <button class="btn" onclick="startTactileWriting('よ')">よ (YO)</button>
+                <button class="btn" onclick="startTactileWriting('ら')">ら (RA)</button>
+                <button class="btn" onclick="startTactileWriting('り')">り (RI)</button>
+                <button class="btn" onclick="startTactileWriting('る')">る (RU)</button>
+                <button class="btn" onclick="startTactileWriting('れ')">れ (RE)</button>
+                <button class="btn" onclick="startTactileWriting('ろ')">ろ (RO)</button>
+            </div>
+
+            <div class="mountain-section">
+                <h4>⛰️ Núi やま cao vút:</h4>
+                <div class="mountain"></div>
+                <div class="mountain"></div>
+                <div class="mountain"></div>
+                <p style="margin-top: 15px; font-size: 1.2em; color: white;">
+                    <strong>やま やま やま</strong> - Núi núi núi<br>
+                    <strong>たかい やま</strong> - Núi cao
+                </p>
+            </div>
+
+            <div class="lion-section">
+                <h4>🦁 Sư tử らいおん gầm:</h4>
+                <div class="lion"></div>
+                <div class="lion"></div>
+                <div class="lion"></div>
+                <p style="margin-top: 15px; font-size: 1.2em; color: white;">
+                    <strong>らいおん らいおん</strong> - Sư tử sư tử<br>
+                    <strong>おおきい らいおん</strong> - Sư tử to
+                </p>
+            </div>
+
+            <div class="song-section">
+                <h4>🎵 Bài hát "やゆよ らりるれろ":</h4>
+                <div class="audio-player">
+                    <p style="font-size: 1.2em;">
+                        <strong>"やゆよ らりるれろ の うた" (Bài hát Ya-Yu-Yo Ra-Ri-Ru-Re-Ro)</strong><br><br>
+                        やま やま やま (Núi núi núi)<br>
+                        ゆき ゆき ゆき (Tuyết tuyết tuyết)<br>
+                        よる よる よる (Đêm đêm đêm)<br>
+                        らいおん らいおん らいおん (Sư tử sư tử sư tử)<br>
+                        りんご りんご りんご (Táo táo táo)<br>
+                        るす るす るす (Vắng nhà vắng nhà vắng nhà)<br>
+                        れいぞうこ れいぞうこ れいぞうこ (Tủ lạnh tủ lạnh tủ lạnh)<br>
+                        ろく ろく ろく (Sáu sáu sáu)<br>
+                        やゆよ らりるれろ うたおう！(Ya-Yu-Yo Ra-Ri-Ru-Re-Ro hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('yayuyo-rarirurero-song')">🎵 Hát cùng</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài tập về nhà -->
+        <div class="lesson-section">
+            <h3>📚 Bài tập về nhà</h3>
+            <p><strong>[Suy luận] - Bài tập được thiết kế để củng cố kiến thức:</strong></p>
+            <ul>
+                <li>Viết chữ や ゆ よ ら り る れ ろ 3 lần mỗi chữ</li>
+                <li>Hát bài "やゆよ らりるれろ" với bố mẹ</li>
+                <li>Vẽ núi やま và sư tử らいおん</li>
+                <li>Viết trong không khí tất cả chữ đã học (あ-ろ)</li>
+            </ul>
+        </div>
+
+        <!-- Progress tracking -->
+        <div class="lesson-section">
+            <h3>📊 Tiến độ học tập</h3>
+            <p>✅ Đã học: あ か さ た な は ま や ゆ よ ら り る れ ろ</p>
+            <p>🎯 Mục tiêu ngày mai: Hoàn thành Hiragana: わ を ん</p>
+            <p>🏆 Điểm số hôm nay: <span id="todayScore">0</span>/100</p>
+            <button class="btn" onclick="calculateScore()">📈 Tính điểm</button>
+        </div>
+    </div>
+
+    <script>
+        // Speed Game Logic
+        let speedTarget = '';
+        let speedScore = 0;
+        let speedActive = false;
+        let speedInterval;
+
+        function startSpeedGame() {
+            speedActive = true;
+            speedScore = 0;
+            document.getElementById('speedScore').textContent = 'Điểm: 0';
+            document.getElementById('speedResult').textContent = '';
+            nextSpeedTarget();
+        }
+
+        function nextSpeedTarget() {
+            if (!speedActive) return;
+            
+            const hiraganaList = ['や', 'ゆ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ'];
+            speedTarget = hiraganaList[Math.floor(Math.random() * hiraganaList.length)];
+            document.getElementById('speedTarget').textContent = `Mục tiêu: ${speedTarget}`;
+            
+            // Highlight target card
+            const cards = document.querySelectorAll('.speed-card');
+            cards.forEach(card => {
+                card.classList.remove('active');
+                if (card.getAttribute('data-hiragana') === speedTarget) {
+                    card.classList.add('active');
+                }
+            });
+            
+            // Auto change target after 3 seconds
+            speedInterval = setTimeout(() => {
+                if (speedActive) {
+                    nextSpeedTarget();
+                }
+            }, 3000);
+        }
+
+        function speedClick(card) {
+            if (!speedActive) return;
+            
+            const hiragana = card.getAttribute('data-hiragana');
+            if (hiragana === speedTarget) {
+                speedScore += 10;
+                document.getElementById('speedScore').textContent = `Điểm: ${speedScore}`;
+                document.getElementById('speedResult').textContent = 'Tuyệt vời! +10 điểm!';
+                
+                // Change target immediately
+                clearTimeout(speedInterval);
+                nextSpeedTarget();
+            } else {
+                document.getElementById('speedResult').textContent = 'Thử lại nhé!';
+            }
+        }
+
+        function resetSpeedGame() {
+            speedActive = false;
+            clearTimeout(speedInterval);
+            speedScore = 0;
+            speedTarget = '';
+            document.getElementById('speedScore').textContent = 'Điểm: 0';
+            document.getElementById('speedResult').textContent = '';
+            document.getElementById('speedTarget').textContent = 'Mục tiêu: や';
+            
+            const cards = document.querySelectorAll('.speed-card');
+            cards.forEach(card => {
+                card.classList.remove('active');
+            });
+        }
+
+        // Tactile Writing Function
+        function startTactileWriting(hiragana) {
+            const area = document.getElementById('tactileArea');
+            const instructions = {
+                'や': 'Viết や: Nét ngang, nét dọc, nét cong',
+                'ゆ': 'Viết ゆ: Nét cong dài, nét dọc, nét ngang',
+                'よ': 'Viết よ: Nét cong, nét dọc, nét ngang',
+                'ら': 'Viết ら: Nét cong, nét dọc, nét ngang',
+                'り': 'Viết り: Nét dọc, nét dọc ngắn',
+                'る': 'Viết る: Nét cong dài từ trên xuống',
+                'れ': 'Viết れ: Nét dọc, nét cong, nét ngang',
+                'ろ': 'Viết ろ: Nét cong dài từ trên xuống'
+            };
+            
+            area.innerHTML = `
+                <div style="font-size: 4em; color: #9C27B0; margin-bottom: 20px;">${hiragana}</div>
+                <p style="font-size: 1.1em; color: #333;">${instructions[hiragana]}</p>
+                <p style="color: #666; margin-top: 10px;">Em hãy dùng ngón tay viết chữ này trong cát/bột mì!</p>
+                <div class="sand-texture" onclick="simulateSandWriting('${hiragana}')">
+                    🏖️ Viết trong cát
+                </div>
+                <div class="sand-texture" onclick="simulateFlourWriting('${hiragana}')">
+                    🌾 Viết trong bột mì
+                </div>
+            `;
+        }
+
+        function simulateSandWriting(hiragana) {
+            alert(`🏖️ Em đang viết chữ ${hiragana} trong cát!\nCảm giác mát mẻ và mềm mại!`);
+        }
+
+        function simulateFlourWriting(hiragana) {
+            alert(`🌾 Em đang viết chữ ${hiragana} trong bột mì!\nCảm giác mịn màng và trắng tinh!`);
+        }
+
+        // Sound functions
+        function playSound(soundType) {
+            console.log(`Playing sound: ${soundType}`);
+            alert(`🔊 Đang phát âm thanh: ${soundType}\n[Chưa xác minh] - Cần file âm thanh thực tế`);
+        }
+
+        function playHiragana(hiragana) {
+            console.log(`Playing hiragana: ${hiragana}`);
+            alert(`🔊 Phát âm: ${hiragana}`);
+        }
+
+        // Score calculation
+        function calculateScore() {
+            let score = 0;
+            
+            // Check speed game
+            if (speedScore > 0) score += Math.min(speedScore, 50);
+            
+            // Check hiragana card interactions
+            score += 30; // Base score for learning
+            
+            // Check tactile writing participation
+            score += 20; // Base score for participation
+            
+            document.getElementById('todayScore').textContent = score;
+            
+            if (score >= 80) {
+                alert('🌟 Xuất sắc! Em học rất tốt hôm nay!');
+            } else if (score >= 60) {
+                alert('👍 Tốt lắm! Em đã cố gắng nhiều!');
+            } else {
+                alert('💪 Em hãy thử chơi game nhận diện nhanh để tăng điểm nhé!');
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            resetSpeedGame();
+        };
+    </script>
+</body>
+</html>

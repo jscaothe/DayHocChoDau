@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 - Ngày 5: Học Hiragana まみむめも</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .lesson-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF6B6B;
+        }
+        .hiragana-card {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hiragana-card:hover {
+            transform: scale(1.1);
+        }
+        .hiragana-large {
+            font-size: 3em;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        .vocabulary-item {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2196F3;
+        }
+        .game-section {
+            background: #fff3e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF9800;
+        }
+        .song-section {
+            background: #e8f5e8;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .time-slot {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .bingo-card {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background: #ffeb3b;
+            border: 2px solid #333;
+            border-radius: 10px;
+            margin: 5px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 80px;
+            font-size: 1.8em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .bingo-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .bingo-card.marked {
+            background: #4caf50;
+            color: white;
+            transform: scale(0.95);
+        }
+        .bingo-card.bingo {
+            background: #ff6b6b;
+            color: white;
+            animation: bingo 1s ease-in-out;
+        }
+        @keyframes bingo {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .examples {
+            background: #f0f4c3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .example-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+        .mama-section {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .mama-heart {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: #ff6b9d;
+            transform: rotate(45deg);
+            margin: 10px;
+            position: relative;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+        .mama-heart::before,
+        .mama-heart::after {
+            content: '';
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            left: -30px;
+            top: 0;
+            background: #ff6b9d;
+            border-radius: 50%;
+        }
+        .mama-heart::after {
+            left: 0;
+            top: -30px;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+        .water-drops {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #2196F3;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            margin: 5px;
+            animation: drop 2s ease-in-out infinite;
+        }
+        @keyframes drop {
+            0%, 100% { transform: rotate(-45deg) translateY(0); }
+            50% { transform: rotate(-45deg) translateY(10px); }
+        }
+        .dance-section {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .dance-character {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: #9C27B0;
+            border-radius: 50%;
+            margin: 10px;
+            position: relative;
+            animation: dance 1s ease-in-out infinite alternate;
+        }
+        .dance-character::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+        @keyframes dance {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌸 JLPT N5 - Ngày 5 🌸</h1>
+            <h2>Thứ năm, 18/9/2025</h2>
+            <p>Học Hiragana hàng ま: まみむめも</p>
+        </div>
+
+        <!-- 20:00-20:15: Hát bài tổng hợp -->
+        <div class="lesson-section">
+            <div class="time-slot">20:00-20:15: Hát bài tổng hợp あ-は</div>
+            <h3>🎵 Ôn tập bài hát Hiragana</h3>
+            <div class="song-section">
+                <h4>🎼 Bài hát "あ か さ た な は の うた" (Bài hát A-Ka-Sa-Ta-Na-Ha)</h4>
+                <div class="audio-player">
+                    <p><strong>Lời bài hát tổng hợp:</strong></p>
+                    <p style="font-size: 1.1em; line-height: 1.6;">
+                        あ あ あ - あひる あかい (A a a - Vịt con đỏ đỏ)<br>
+                        か か か - からす くろい (Ka ka ka - Quạ đen đen)<br>
+                        さ さ さ - さかな およぐ (Sa sa sa - Cá bơi lội)<br>
+                        た た た - たまご まるい (Ta ta ta - Trứng tròn tròn)<br>
+                        な な な - なまえ きれい (Na na na - Tên đẹp đẹp)<br>
+                        は は は - はな きれい (Ha ha ha - Hoa đẹp đẹp)<br>
+                        あ か さ た な は で - あかるい (A Ka Sa Ta Na Ha - Sáng sủa)<br>
+                        いっしょに うたおう！(Cùng hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('akasatanaha-song')">🎵 Phát nhạc</button>
+                </div>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">あ</div>
+                        <p>A</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">か</div>
+                        <p>Ka</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">さ</div>
+                        <p>Sa</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">た</div>
+                        <p>Ta</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">な</div>
+                        <p>Na</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">は</div>
+                        <p>Ha</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:15-20:30: Học hàng ま -->
+        <div class="lesson-section">
+            <div class="time-slot">20:15-20:30: Học hàng ま: まみむめも</div>
+            <h3>✨ Học chữ mới: まみむめも</h3>
+            
+            <div class="vocabulary-item">
+                <h4>📚 Từ vựng chính:</h4>
+                <div class="examples">
+                    <div class="example-item">
+                        <strong>👩 ママ (mama) - Mẹ</strong><br>
+                        <em>Câu thần chú: "Mẹ ママ yêu thương con"</em><br>
+                        Ví dụ 1: ママが すき (thích mẹ)<br>
+                        Ví dụ 2: ママと あそぶ (chơi với mẹ)<br>
+                        Ví dụ 3: ママに ありがとう (cảm ơn mẹ)
+                    </div>
+                    <div class="example-item">
+                        <strong>💧 みず (mizu) - Nước</strong><br>
+                        <em>Câu thần chú: "Uống nước みず mát lành"</em><br>
+                        Ví dụ 1: みずを のむ (uống nước)<br>
+                        Ví dụ 2: きれいな みず (nước sạch)<br>
+                        Ví dụ 3: みずが つめたい (nước lạnh)
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                <div class="hiragana-card" onclick="playHiragana('ma')">
+                    <div class="hiragana-large">ま</div>
+                    <p>MA</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('mi')">
+                    <div class="hiragana-large">み</div>
+                    <p>MI</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('mu')">
+                    <div class="hiragana-large">む</div>
+                    <p>MU</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('me')">
+                    <div class="hiragana-large">め</div>
+                    <p>ME</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('mo')">
+                    <div class="hiragana-large">も</div>
+                    <p>MO</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:30-20:45: Game Bingo -->
+        <div class="game-section">
+            <div class="time-slot">20:30-20:45: Chơi "Hiragana Bingo"</div>
+            <h3>🎲 Trò chơi: Hiragana Bingo</h3>
+            
+            <p><strong>Cách chơi:</strong> Em hãy đánh dấu các chữ khi nghe thấy!</p>
+            <div id="bingoGame" style="text-align: center;">
+                <div class="bingo-card" data-hiragana="あ" onclick="markBingo(this)">あ</div>
+                <div class="bingo-card" data-hiragana="か" onclick="markBingo(this)">か</div>
+                <div class="bingo-card" data-hiragana="さ" onclick="markBingo(this)">さ</div>
+                <div class="bingo-card" data-hiragana="た" onclick="markBingo(this)">た</div>
+                <div class="bingo-card" data-hiragana="な" onclick="markBingo(this)">な</div>
+                <div class="bingo-card" data-hiragana="は" onclick="markBingo(this)">は</div>
+                <div class="bingo-card" data-hiragana="ま" onclick="markBingo(this)">ま</div>
+                <div class="bingo-card" data-hiragana="み" onclick="markBingo(this)">み</div>
+                <div class="bingo-card" data-hiragana="む" onclick="markBingo(this)">む</div>
+                <div class="bingo-card" data-hiragana="め" onclick="markBingo(this)">め</div>
+                <div class="bingo-card" data-hiragana="も" onclick="markBingo(this)">も</div>
+                <div class="bingo-card" data-hiragana="い" onclick="markBingo(this)">い</div>
+                <div class="bingo-card" data-hiragana="き" onclick="markBingo(this)">き</div>
+                <div class="bingo-card" data-hiragana="し" onclick="markBingo(this)">し</div>
+                <div class="bingo-card" data-hiragana="ち" onclick="markBingo(this)">ち</div>
+                <div class="bingo-card" data-hiragana="に" onclick="markBingo(this)">に</div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <p id="bingoCall" style="font-size: 1.3em; font-weight: bold; color: #FF6B6B;">Bingo gọi: あ!</p>
+                <button class="btn" onclick="startBingo()">🎯 Bắt đầu Bingo</button>
+                <button class="btn" onclick="resetBingo()">🔄 Chơi lại</button>
+            </div>
+            
+            <p id="bingoResult" style="font-size: 1.2em; font-weight: bold; margin-top: 20px; text-align: center;"></p>
+        </div>
+
+        <!-- 20:45-21:00: Bài hát có động tác -->
+        <div class="song-section">
+            <div class="time-slot">20:45-21:00: Ôn tập qua bài hát có động tác</div>
+            <h3>💃 Bài hát có động tác: まみむめも</h3>
+            
+            <div class="mama-section">
+                <h4>👩 Mẹ ママ yêu thương:</h4>
+                <div class="mama-heart"></div>
+                <div class="mama-heart"></div>
+                <div class="mama-heart"></div>
+                <p style="margin-top: 15px; font-size: 1.2em; color: #333;">
+                    <strong>ママ ママ ママ</strong> - Mẹ mẹ mẹ<br>
+                    <strong>だいすき ママ</strong> - Yêu mẹ lắm
+                </p>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <h4>💧 Nước みず mát lành:</h4>
+                <div class="water-drops"></div>
+                <div class="water-drops"></div>
+                <div class="water-drops"></div>
+                <div class="water-drops"></div>
+                <div class="water-drops"></div>
+                <p style="font-size: 1.2em; color: #333;">
+                    <strong>みず みず みず</strong> - Nước nước nước<br>
+                    <strong>つめたい みず</strong> - Nước lạnh
+                </p>
+            </div>
+
+            <div class="dance-section">
+                <h4>🎵 Bài hát "まみむめも" với động tác:</h4>
+                <div class="audio-player">
+                    <p style="font-size: 1.2em;">
+                        <strong>"まみむめも の うた" (Bài hát Ma-Mi-Mu-Me-Mo)</strong><br><br>
+                        <strong>Động tác 1:</strong> ま ま ま - Vỗ tay 3 lần<br>
+                        <strong>Động tác 2:</strong> み み み - Giơ tay lên trời<br>
+                        <strong>Động tác 3:</strong> む む む - Xoay người<br>
+                        <strong>Động tác 4:</strong> め め め - Nhảy lên<br>
+                        <strong>Động tác 5:</strong> も も も - Ôm bản thân<br>
+                        <strong>Kết thúc:</strong> まみむめも うたおう！(Ma-Mi-Mu-Me-Mo hát nào!)
+                    </p>
+                    <button class="btn" onclick="startDance()">💃 Bắt đầu nhảy</button>
+                    <button class="btn" onclick="playSound('mamimumemo-song')">🎵 Hát cùng</button>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <div class="dance-character"></div>
+                    <div class="dance-character"></div>
+                    <div class="dance-character"></div>
+                    <div class="dance-character"></div>
+                    <div class="dance-character"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài tập về nhà -->
+        <div class="lesson-section">
+            <h3>📚 Bài tập về nhà</h3>
+            <p><strong>[Suy luận] - Bài tập được thiết kế để củng cố kiến thức:</strong></p>
+            <ul>
+                <li>Viết chữ まみむめも 3 lần mỗi chữ</li>
+                <li>Hát bài "まみむめも" với động tác cho bố mẹ xem</li>
+                <li>Nói "ママ ありがとう" (Cảm ơn mẹ) bằng tiếng Nhật</li>
+                <li>Uống nước và nói "みず おいしい" (Nước ngon)</li>
+            </ul>
+        </div>
+
+        <!-- Progress tracking -->
+        <div class="lesson-section">
+            <h3>📊 Tiến độ học tập</h3>
+            <p>✅ Đã học: あ か さ た な は まみむめも</p>
+            <p>🎯 Mục tiêu ngày mai: Học や ゆ よ + ら り る れ ろ</p>
+            <p>🏆 Điểm số hôm nay: <span id="todayScore">0</span>/100</p>
+            <button class="btn" onclick="calculateScore()">📈 Tính điểm</button>
+        </div>
+    </div>
+
+    <script>
+        // Bingo Game Logic
+        let bingoSequence = [];
+        let currentBingoIndex = 0;
+        let bingoActive = false;
+        let markedCards = 0;
+
+        function startBingo() {
+            bingoSequence = ['あ', 'か', 'さ', 'た', 'な', 'は', 'ま', 'み', 'む', 'め', 'も', 'い', 'き', 'し', 'ち', 'に'];
+            currentBingoIndex = 0;
+            bingoActive = true;
+            markedCards = 0;
+            document.getElementById('bingoResult').textContent = '';
+            callNextBingo();
+        }
+
+        function callNextBingo() {
+            if (currentBingoIndex < bingoSequence.length && bingoActive) {
+                const hiragana = bingoSequence[currentBingoIndex];
+                document.getElementById('bingoCall').textContent = `Bingo gọi: ${hiragana}!`;
+                currentBingoIndex++;
+                
+                setTimeout(() => {
+                    if (bingoActive) {
+                        callNextBingo();
+                    }
+                }, 2000);
+            } else if (bingoActive) {
+                bingoActive = false;
+                document.getElementById('bingoCall').textContent = 'Bingo kết thúc!';
+                checkBingo();
+            }
+        }
+
+        function markBingo(card) {
+            if (!bingoActive || card.classList.contains('marked')) return;
+            
+            const hiragana = card.getAttribute('data-hiragana');
+            const currentCall = document.getElementById('bingoCall').textContent;
+            
+            if (currentCall.includes(hiragana)) {
+                card.classList.add('marked');
+                markedCards++;
+                document.getElementById('bingoResult').textContent = `Tuyệt vời! Đã đánh dấu ${markedCards} chữ!`;
+                
+                if (markedCards >= 5) {
+                    card.classList.add('bingo');
+                    document.getElementById('bingoResult').textContent = '🎉 BINGO! Em thắng rồi!';
+                    bingoActive = false;
+                    playSound('bingo');
+                }
+            } else {
+                document.getElementById('bingoResult').textContent = 'Chờ đến lượt chữ này nhé!';
+            }
+        }
+
+        function resetBingo() {
+            const cards = document.querySelectorAll('.bingo-card');
+            cards.forEach(card => {
+                card.classList.remove('marked', 'bingo');
+            });
+            bingoActive = false;
+            markedCards = 0;
+            currentBingoIndex = 0;
+            document.getElementById('bingoResult').textContent = '';
+            document.getElementById('bingoCall').textContent = 'Bingo gọi: あ!';
+        }
+
+        // Dance Function
+        function startDance() {
+            const characters = document.querySelectorAll('.dance-character');
+            let danceStep = 0;
+            
+            const danceInterval = setInterval(() => {
+                characters.forEach((char, index) => {
+                    char.style.animationDelay = `${index * 0.2}s`;
+                });
+                
+                danceStep++;
+                if (danceStep >= 10) {
+                    clearInterval(danceInterval);
+                    alert('🎉 Em nhảy rất đẹp! Hãy hát cùng bài hát まみむめも!');
+                }
+            }, 500);
+        }
+
+        // Sound functions
+        function playSound(soundType) {
+            console.log(`Playing sound: ${soundType}`);
+            alert(`🔊 Đang phát âm thanh: ${soundType}\n[Chưa xác minh] - Cần file âm thanh thực tế`);
+        }
+
+        function playHiragana(hiragana) {
+            console.log(`Playing hiragana: ${hiragana}`);
+            alert(`🔊 Phát âm: ${hiragana}`);
+        }
+
+        // Score calculation
+        function calculateScore() {
+            let score = 0;
+            
+            // Check Bingo game
+            if (markedCards > 0) score += Math.min(markedCards * 10, 50);
+            
+            // Check hiragana card interactions
+            score += 30; // Base score for learning
+            
+            // Check dance participation
+            score += 20; // Base score for participation
+            
+            document.getElementById('todayScore').textContent = score;
+            
+            if (score >= 80) {
+                alert('🌟 Xuất sắc! Em học rất tốt hôm nay!');
+            } else if (score >= 60) {
+                alert('👍 Tốt lắm! Em đã cố gắng nhiều!');
+            } else {
+                alert('💪 Em hãy thử chơi Bingo và nhảy múa để tăng điểm nhé!');
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            resetBingo();
+        };
+    </script>
+</body>
+</html>

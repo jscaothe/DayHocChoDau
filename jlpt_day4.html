@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 - Ngày 4: Học Hiragana はひふへほ</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .lesson-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF6B6B;
+        }
+        .hiragana-card {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hiragana-card:hover {
+            transform: scale(1.1);
+        }
+        .hiragana-large {
+            font-size: 3em;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        .vocabulary-item {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2196F3;
+        }
+        .game-section {
+            background: #fff3e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #FF9800;
+        }
+        .story-section {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #9C27B0;
+        }
+        .song-section {
+            background: #e8f5e8;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .drawing-section {
+            background: #fce4ec;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #E91E63;
+        }
+        .time-slot {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .memory-card {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: #ffeb3b;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 100px;
+            font-size: 2em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .memory-card.flipped {
+            background: #4caf50;
+            transform: rotateY(180deg);
+        }
+        .canvas-container {
+            border: 3px dashed #FF6B6B;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            background: white;
+        }
+        #drawingCanvas {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: crosshair;
+        }
+        .examples {
+            background: #f0f4c3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .example-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+        .flower-garden {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .flower {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: #ff6b9d;
+            border-radius: 50%;
+            margin: 10px;
+            position: relative;
+            animation: bloom 2s ease-in-out infinite alternate;
+        }
+        .flower::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #ffeb3b;
+            border-radius: 50%;
+        }
+        @keyframes bloom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .airplane {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            background: #2196F3;
+            border-radius: 20px;
+            margin: 10px;
+            position: relative;
+            animation: fly 3s ease-in-out infinite;
+        }
+        .airplane::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid #2196F3;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+        @keyframes fly {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌸 JLPT N5 - Ngày 4 🌸</h1>
+            <h2>Thứ tư, 17/9/2025</h2>
+            <p>Học Hiragana hàng は: はひふへほ</p>
+        </div>
+
+        <!-- 20:00-20:15: Review song -->
+        <div class="lesson-section">
+            <div class="time-slot">20:00-20:15: Review song: あかさたな</div>
+            <h3>🎶 Ôn tập bài hát Hiragana</h3>
+            <div class="song-section">
+                <h4>🎼 Bài hát "あ か さ た な の うた" (Bài hát A-Ka-Sa-Ta-Na)</h4>
+                <div class="audio-player">
+                    <p><strong>Lời bài hát tổng hợp:</strong></p>
+                    <p style="font-size: 1.1em; line-height: 1.6;">
+                        あ あ あ - あひる あかい (A a a - Vịt con đỏ đỏ)<br>
+                        か か か - からす くろい (Ka ka ka - Quạ đen đen)<br>
+                        さ さ さ - さかな およぐ (Sa sa sa - Cá bơi lội)<br>
+                        た た た - たまご まるい (Ta ta ta - Trứng tròn tròn)<br>
+                        な な な - なまえ きれい (Na na na - Tên đẹp đẹp)<br>
+                        あ か さ た な で - あかるい (A Ka Sa Ta Na - Sáng sủa)<br>
+                        いっしょに うたおう！(Cùng hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('akasatana-song')">🎵 Phát nhạc</button>
+                </div>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">あ</div>
+                        <p>A</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">か</div>
+                        <p>Ka</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">さ</div>
+                        <p>Sa</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">た</div>
+                        <p>Ta</p>
+                    </div>
+                    <div class="hiragana-card">
+                        <div class="hiragana-large">な</div>
+                        <p>Na</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:15-20:30: Học hàng は -->
+        <div class="lesson-section">
+            <div class="time-slot">20:15-20:30: Học hàng は: はひふへほ</div>
+            <h3>✨ Học chữ mới: はひふへほ</h3>
+            
+            <div class="vocabulary-item">
+                <h4>📚 Từ vựng chính:</h4>
+                <div class="examples">
+                    <div class="example-item">
+                        <strong>🌸 はな (hana) - Hoa</strong><br>
+                        <em>Câu thần chú: "Hoa はな thơm phức"</em><br>
+                        Ví dụ 1: きれいな はな (hoa đẹp)<br>
+                        Ví dụ 2: はなが さいている (hoa đang nở)<br>
+                        Ví dụ 3: はなを かう (mua hoa)
+                    </div>
+                    <div class="example-item">
+                        <strong>✈️ ひこうき (hikouki) - Máy bay</strong><br>
+                        <em>Câu thần chú: "Bay lên cao ひこうき"</em><br>
+                        Ví dụ 1: ひこうきで いく (đi bằng máy bay)<br>
+                        Ví dụ 2: おおきい ひこうき (máy bay to)<br>
+                        Ví dụ 3: ひこうきが とぶ (máy bay bay)
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+                <div class="hiragana-card" onclick="playHiragana('ha')">
+                    <div class="hiragana-large">は</div>
+                    <p>HA</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('hi')">
+                    <div class="hiragana-large">ひ</div>
+                    <p>HI</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('fu')">
+                    <div class="hiragana-large">ふ</div>
+                    <p>FU</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('he')">
+                    <div class="hiragana-large">へ</div>
+                    <p>HE</p>
+                </div>
+                <div class="hiragana-card" onclick="playHiragana('ho')">
+                    <div class="hiragana-large">ほ</div>
+                    <p>HO</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20:30-20:45: Game Memory -->
+        <div class="game-section">
+            <div class="time-slot">20:30-20:45: Game "Memory" với thẻ Hiragana</div>
+            <h3>🎮 Trò chơi: Memory Hiragana</h3>
+            
+            <p><strong>Cách chơi:</strong> Click vào các thẻ để lật và tìm cặp giống nhau!</p>
+            <div id="memoryGame" style="text-align: center;">
+                <div class="memory-card" data-card="は" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="ひ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="ふ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="へ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="ほ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="は" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="ひ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="ふ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="へ" onclick="flipCard(this)">?</div>
+                <div class="memory-card" data-card="ほ" onclick="flipCard(this)">?</div>
+            </div>
+            <p id="gameResult" style="font-size: 1.2em; font-weight: bold; margin-top: 20px;"></p>
+            <button class="btn" onclick="resetGame()">🔄 Chơi lại</button>
+        </div>
+
+        <!-- 20:45-21:00: Vẽ tranh -->
+        <div class="drawing-section">
+            <div class="time-slot">20:45-21:00: Vẽ tranh kết hợp chữ và nghĩa</div>
+            <h3>🎨 Vẽ tranh: Vườn hoa はな và máy bay ひこうき</h3>
+            
+            <div class="flower-garden">
+                <h4>🌸 Vườn hoa はな của em:</h4>
+                <div class="flower"></div>
+                <div class="flower"></div>
+                <div class="flower"></div>
+                <div class="flower"></div>
+                <div class="flower"></div>
+                <p style="margin-top: 15px; font-size: 1.2em; color: #333;">
+                    <strong>はな はな はな</strong> - Hoa hoa hoa<br>
+                    <strong>きれいな はな</strong> - Hoa đẹp
+                </p>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <h4>✈️ Máy bay ひこうき bay trên trời:</h4>
+                <div class="airplane"></div>
+                <p style="font-size: 1.2em; color: #333;">
+                    <strong>ひこうき ひこうき</strong> - Máy bay máy bay<br>
+                    <strong>そらを とぶ</strong> - Bay trên trời
+                </p>
+            </div>
+
+            <div class="canvas-container">
+                <h4>🖌️ Vẽ vườn hoa và máy bay của em:</h4>
+                <canvas id="drawingCanvas" width="500" height="300"></canvas><br>
+                <button class="btn" onclick="clearCanvas()">🗑️ Xóa</button>
+                <button class="btn" onclick="changeColor('pink')">🌸 Hồng</button>
+                <button class="btn" onclick="changeColor('blue')">🔵 Xanh</button>
+                <button class="btn" onclick="changeColor('green')">🟢 Xanh lá</button>
+                <button class="btn" onclick="changeColor('yellow')">🟡 Vàng</button>
+                
+                <div style="margin-top: 20px;">
+                    <h4>🎯 Hướng dẫn vẽ:</h4>
+                    <p>1. Vẽ vườn hoa với nhiều bông hoa đẹp</p>
+                    <p>2. Vẽ máy bay bay trên trời</p>
+                    <p>3. Viết chữ <strong>はな</strong> bên cạnh hoa</p>
+                    <p>4. Viết chữ <strong>ひこうき</strong> bên cạnh máy bay</p>
+                    <p>5. Tô màu thật đẹp!</p>
+                </div>
+            </div>
+
+            <div class="song-section">
+                <h4>🎵 Bài hát "はひふへほ":</h4>
+                <div class="audio-player">
+                    <p style="font-size: 1.2em;">
+                        <strong>"はひふへほ の うた" (Bài hát Ha-Hi-Fu-He-Ho)</strong><br><br>
+                        はな はな はな (Hoa hoa hoa)<br>
+                        ひこうき ひこうき ひこうき (Máy bay máy bay máy bay)<br>
+                        ふく ふく ふく (Quần áo quần áo quần áo)<br>
+                        へや へや へや (Phòng phòng phòng)<br>
+                        ほん ほん ほん (Sách sách sách)<br>
+                        はひふへほ うたおう！(Ha-Hi-Fu-He-Ho hát nào!)
+                    </p>
+                    <button class="btn" onclick="playSound('hahifuheho-song')">🎵 Hát cùng</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài tập về nhà -->
+        <div class="lesson-section">
+            <h3>📚 Bài tập về nhà</h3>
+            <p><strong>[Suy luận] - Bài tập được thiết kế để củng cố kiến thức:</strong></p>
+            <ul>
+                <li>Viết chữ はひふへほ 3 lần mỗi chữ</li>
+                <li>Hát bài "はひふへほ" với bố mẹ</li>
+                <li>Tìm 2 đồ vật có tên bắt đầu bằng chữ は trong nhà</li>
+                <li>Vẽ thêm một bức tranh có hoa はな và máy bay ひこうき</li>
+            </ul>
+        </div>
+
+        <!-- Progress tracking -->
+        <div class="lesson-section">
+            <h3>📊 Tiến độ học tập</h3>
+            <p>✅ Đã học: あ か さ た な はひふへほ</p>
+            <p>🎯 Mục tiêu ngày mai: Học まみむめも</p>
+            <p>🏆 Điểm số hôm nay: <span id="todayScore">0</span>/100</p>
+            <button class="btn" onclick="calculateScore()">📈 Tính điểm</button>
+        </div>
+    </div>
+
+    <script>
+        // Memory Game Logic
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let currentColor = 'black';
+
+        function flipCard(card) {
+            if (card.classList.contains('flipped') || flippedCards.length >= 2) return;
+            
+            card.classList.add('flipped');
+            card.textContent = card.getAttribute('data-card');
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 1000);
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.getAttribute('data-card') === card2.getAttribute('data-card')) {
+                matchedPairs++;
+                document.getElementById('gameResult').textContent = `Tuyệt vời! Tìm được ${matchedPairs} cặp!`;
+                
+                if (matchedPairs === 5) {
+                    document.getElementById('gameResult').textContent = '🎉 Hoàn thành! Em giỏi quá!';
+                    playSound('victory');
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                card1.textContent = '?';
+                card2.textContent = '?';
+            }
+            
+            flippedCards = [];
+        }
+
+        function resetGame() {
+            const cards = document.querySelectorAll('.memory-card');
+            cards.forEach(card => {
+                card.classList.remove('flipped');
+                card.textContent = '?';
+            });
+            flippedCards = [];
+            matchedPairs = 0;
+            document.getElementById('gameResult').textContent = '';
+            
+            // Shuffle cards
+            const gameContainer = document.getElementById('memoryGame');
+            const cardArray = Array.from(cards);
+            cardArray.sort(() => Math.random() - 0.5);
+            cardArray.forEach(card => gameContainer.appendChild(card));
+        }
+
+        // Drawing Canvas
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('touchstart', handleTouch);
+        canvas.addEventListener('touchmove', handleTouch);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        function startDrawing(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        function stopDrawing() {
+            if (!isDrawing) return;
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function changeColor(color) {
+            currentColor = color;
+        }
+
+        // Sound functions
+        function playSound(soundType) {
+            console.log(`Playing sound: ${soundType}`);
+            alert(`🔊 Đang phát âm thanh: ${soundType}\n[Chưa xác minh] - Cần file âm thanh thực tế`);
+        }
+
+        function playHiragana(hiragana) {
+            console.log(`Playing hiragana: ${hiragana}`);
+            alert(`🔊 Phát âm: ${hiragana}`);
+        }
+
+        // Score calculation
+        function calculateScore() {
+            let score = 0;
+            
+            // Check if games were played
+            if (matchedPairs > 0) score += 30;
+            
+            // Check interaction with hiragana cards
+            score += 40; // Base score for participation
+            
+            // Check drawing activity
+            if (ctx.getImageData(0, 0, canvas.width, canvas.height).data.some(channel => channel !== 0)) {
+                score += 30;
+            }
+            
+            document.getElementById('todayScore').textContent = score;
+            
+            if (score >= 80) {
+                alert('🌟 Xuất sắc! Em học rất tốt hôm nay!');
+            } else if (score >= 60) {
+                alert('👍 Tốt lắm! Em đã cố gắng nhiều!');
+            } else {
+                alert('💪 Em hãy thử chơi game và vẽ tranh để tăng điểm nhé!');
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            resetGame();
+            // Draw sample garden and airplane outline
+            drawSampleGarden();
+        };
+
+        function drawSampleGarden() {
+            ctx.strokeStyle = '#ccc';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            
+            // Draw flowers
+            for (let i = 0; i < 5; i++) {
+                const x = 100 + i * 80;
+                const y = 200;
+                ctx.beginPath();
+                ctx.arc(x, y, 20, 0, 2 * Math.PI);
+                ctx.stroke();
+                
+                // Flower center
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+            
+            // Draw airplane
+            ctx.beginPath();
+            ctx.ellipse(300, 100, 40, 20, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Airplane nose
+            ctx.beginPath();
+            ctx.moveTo(260, 100);
+            ctx.lineTo(240, 90);
+            ctx.lineTo(240, 110);
+            ctx.closePath();
+            ctx.stroke();
+            
+            ctx.setLineDash([]);
+        }
+    </script>
+</body>
+</html>
